@@ -1,0 +1,155 @@
+\begin{thebibliography}{}
+
+\bibitem[Anders et~al., 2015]{Htseqcount}
+Anders, S., Pyl, P.~T., and Huber, W. (2015).
+\newblock {{H}{T}{S}eq--a {P}ython framework to work with high-throughput
+  sequencing data}.
+\newblock {\em Bioinformatics}, 31(2):166--169.
+
+\bibitem[Bannister et~al., 2001]{intro}
+Bannister, A.~J., Zegerman, P., Partridge, J.~F., Miska, E.~A., Thomas, J.~O.,
+  Allshire, R.~C., and Kouzarides, T. (2001).
+\newblock {{S}elective recognition of methylated lysine 9 on histone {H}3 by
+  the {H}{P}1 chromo domain}.
+\newblock {\em Nature}, 410(6824):120--124.
+
+\bibitem[Bao et~al., 2015]{repbase}
+Bao, W., Kojima, K.~K., and Kohany, O. (2015).
+\newblock {{R}epbase {U}pdate, a database of repetitive elements in eukaryotic
+  genomes}.
+\newblock {\em Mob DNA}, 6:11.
+
+\bibitem[Boch et~al., 2009]{TALE1}
+Boch, J., Scholze, H., Schornack, S., Landgraf, A., Hahn, S., Kay, S., Lahaye,
+  T., Nickstadt, A., and Bonas, U. (2009).
+\newblock {{B}reaking the code of {D}{N}{A} binding specificity of
+  {T}{A}{L}-type {I}{I}{I} effectors}.
+\newblock {\em Science}, 326(5959):1509--1512.
+
+\bibitem[Chen et~al., 2013]{pmid23945931}
+Chen, C., Zhang, S., and Zhang, X.~S. (2013).
+\newblock {{D}iscovery of cell-type specific regulatory elements in the human
+  genome using differential chromatin modification analysis}.
+\newblock {\em Nucleic Acids Res.}, 41(20):9230--9242.
+
+\bibitem[Criscione et~al., 2014]{pmid25012247}
+Criscione, S.~W., Zhang, Y., Thompson, W., Sedivy, J.~M., and Neretti, N.
+  (2014).
+\newblock {{T}ranscriptional landscape of repetitive elements in normal and
+  cancer human cells}.
+\newblock {\em BMC Genomics}, 15:583.
+
+\bibitem[Guenatri et~al., 2004]{Discu1}
+Guenatri, M., Bailly, D., Maison, C., and Almouzni, G. (2004).
+\newblock {{M}ouse centric and pericentric satellite repeats form distinct
+  functional heterochromatin}.
+\newblock {\em J. Cell Biol.}, 166(4):493--505.
+
+\bibitem[https://david.ncifcrf.gov/, 2018]{GO}
+https://david.ncifcrf.gov/ (2003 - 2018).
+\newblock David bioinformatics resources 6.8.
+\newblock Laboratory of Human Retrovirology and Immunoinformatics.
+
+\bibitem[Krzywinski et~al., 2009]{circos}
+Krzywinski, M., Schein, J., Birol, I., Connors, J., Gascoyne, R., Horsman, D.,
+  Jones, S.~J., and Marra, M.~A. (2009).
+\newblock {{C}ircos: an information aesthetic for comparative genomics}.
+\newblock {\em Genome Res.}, 19(9):1639--1645.
+
+\bibitem[Langmead and Salzberg, 2012]{bowtie}
+Langmead, B. and Salzberg, S.~L. (2012).
+\newblock {{F}ast gapped-read alignment with {B}owtie 2}.
+\newblock {\em Nat. Methods}, 9(4):357--359.
+
+\bibitem[L\^e et~al., 2008]{ACParticle}
+L\^e, S., Josse, J., and Husson, F. (2008).
+\newblock {FactoMineR}: A package for multivariate analysis.
+\newblock {\em Journal of Statistical Software}, 25(1):1--18.
+
+\bibitem[Martins et~al., 2016]{Discu2}
+Martins, N.~M., Bergmann, J.~H., Shono, N., Kimura, H., Larionov, V., Masumoto,
+  H., and Earnshaw, W.~C. (2016).
+\newblock {{E}pigenetic engineering shows that a human centromere resists
+  silencing mediated by {H}3{K}27me3/{K}9me3}.
+\newblock {\em Mol. Biol. Cell}, 27(1):177--196.
+
+\bibitem[Metzker, 2010]{pmid19997069}
+Metzker, M.~L. (2010).
+\newblock {{S}equencing technologies - the next generation}.
+\newblock {\em Nat. Rev. Genet.}, 11(1):31--46.
+
+\bibitem[Moscou and Bogdanove, 2009]{TALE2}
+Moscou, M.~J. and Bogdanove, A.~J. (2009).
+\newblock {{A} simple cipher governs {D}{N}{A} recognition by {T}{A}{L}
+  effectors}.
+\newblock {\em Science}, 326(5959):1501.
+
+\bibitem[Nellaker et~al., 2012]{transposables}
+Nellaker, C., Keane, T.~M., Yalcin, B., Wong, K., Agam, A., Belgard, T.~G.,
+  Flint, J., Adams, D.~J., Frankel, W.~N., and Ponting, C.~P. (2012).
+\newblock {{T}he genomic landscape shaped by selection on transposable elements
+  across 18 mouse strains}.
+\newblock {\em Genome Biol.}, 13(6):R45.
+
+\bibitem[Nishibuchi and Dejardin, 2017]{introsouris}
+Nishibuchi, G. and Dejardin, J. (2017).
+\newblock {{T}he molecular basis of the organization of repetitive
+  {D}{N}{A}-containing constitutive heterochromatin in mammals}.
+\newblock {\em Chromosome Res.}, 25(1):77--87.
+
+\bibitem[Oliveros, 2015]{Venn}
+Oliveros, J. ((2007-2015)).
+\newblock Venny. an interactive tool for comparing lists with venn's diagrams.
+\newblock http://bioinfogp.cnb.csic.es/tools/venny/index.html.
+
+\bibitem[Orlando et~al., 2014]{norma}
+Orlando, D.~A., Chen, M.~W., Brown, V.~E., Solanki, S., Choi, Y.~J., Olson,
+  E.~R., Fritz, C.~C., Bradner, J.~E., and Guenther, M.~G. (2014).
+\newblock {{Q}uantitative {C}h{I}{P}-{S}eq normalization reveals global
+  modulation of the epigenome}.
+\newblock {\em Cell Rep}, 9(3):1163--1170.
+
+\bibitem[Quinlan and Hall, 2010]{bedtools}
+Quinlan, A.~R. and Hall, I.~M. (2010).
+\newblock {{B}{E}{D}{T}ools: a flexible suite of utilities for comparing
+  genomic features}.
+\newblock {\em Bioinformatics}, 26(6):841--842.
+
+\bibitem[Ramirez et~al., 2016]{deeptools}
+Ramirez, F., Ryan, D.~P., Gruning, B., Bhardwaj, V., Kilpert, F., Richter,
+  A.~S., Heyne, S., Dundar, F., and Manke, T. (2016).
+\newblock {deep{T}ools2: a next generation web server for deep-sequencing data
+  analysis}.
+\newblock {\em Nucleic Acids Res.}, 44(W1):W160--165.
+
+\bibitem[Robinson et~al., 2011]{IGV}
+Robinson, J.~T., Thorvaldsdottir, H., Winckler, W., Guttman, M., Lander, E.~S.,
+  Getz, G., and Mesirov, J.~P. (2011).
+\newblock {{I}ntegrative genomics viewer}.
+\newblock {\em Nat. Biotechnol.}, 29(1):24--26.
+
+\bibitem[Simon, 2010]{fastqc}
+Simon, A. (2010).
+\newblock Fastqc: a quality control tool for high throughput sequence data.
+\newblock http://www.bioinformatics.babraham.ac.uk/projects/fastqc/.
+
+\bibitem[Skvir, 2017]{protocole}
+Skvir, N. (2017).
+\newblock Repenrich2 is an updated method to estimate repetitive element
+  enrichment using high-throughput sequencing data.
+\newblock https://github.com/nskvir/RepEnrich2.
+
+\bibitem[Xu et~al., 2014]{SICER}
+Xu, S., Grullon, S., Ge, K., and Peng, W. (2014).
+\newblock {{S}patial clustering for identification of {C}h{I}{P}-enriched
+  regions ({S}{I}{C}{E}{R}) to map regions of histone methylation patterns in
+  embryonic stem cells}.
+\newblock {\em Methods Mol. Biol.}, 1150:97--111.
+
+\bibitem[Zhang et~al., 2008]{MACS}
+Zhang, Y., Liu, T., Meyer, C.~A., Eeckhoute, J., Johnson, D.~S., Bernstein,
+  B.~E., Nusbaum, C., Myers, R.~M., Brown, M., Li, W., and Liu, X.~S. (2008).
+\newblock {{M}odel-based analysis of {C}h{I}{P}-{S}eq ({M}{A}{C}{S})}.
+\newblock {\em Genome Biol.}, 9(9):R137.
+
+\end{thebibliography}

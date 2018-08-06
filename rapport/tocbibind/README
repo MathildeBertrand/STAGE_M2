@@ -1,0 +1,106 @@
+_____________________
+The TOCBIBIND package
+
+    The tocbibind package can be used to add the ToC and/or bibliography 
+and/or the index etc., to the Table of Contents listing.
+
+______________
+Change History
+
+Version 1.5k (2010/10/13)
+-  Remove a superfluous message from the console output:  
+   "The document has [section|chapter] divisions"
+
+Version 1.5j (2009/12/28)
+- Internal changes: \phantomsection is no longer needed
+  for hyperref support
+
+Version 1.5i (2009/09/04)
+- New maintainer (Will Robertson)
+
+Changes in version 1.5h (2004/05/10)
+- Changed license from LPPL v1.0 to v1.3
+
+Changes in version 1.5g (2003/03/13)
+- Fixed Bibliography page headings in twocolumn book class
+
+Changes in version 1.5f (2003/02/04)
+- Fixed Index heading \MakeUppercase problem
+
+Changes in version 1.5e (2003/01/22)
+- Improved harmony with the chapterbib and natbib packages
+
+Changes in version 1.5d (2002/04/09)
+- Fixed problem with \tocchapter in non-chaptered documents
+
+Changes in version 1.5c (2002/03/11)
+- Fixed problem with \tocetcmark
+
+Changes in version 1.5b (2001/11/10)
+- Improved interface for new pagestyles
+
+Changes in version 1.5 (2001/04/17)
+- Removed requirement for the stdclsdv package
+- Fixed problem when used with the hyperref package
+
+Changes in version 1.4a (2000/03/05)
+- Improved flexibility of single line numbered chapters
+- Examples of handling additional kinds of List of...
+- Replaced command \toc@file by \tocfile
+
+Changes in version 1.4: (2000/03/04)
+- Disabled LaTeX feature (bug 3126) of change in Index title height
+- Added commands for single line numbered chapter headings
+- Added numbered List of... headings
+
+Changes in version 1.3a: (1999/09/12)
+- Fixed index numbering, options, and headings
+- Improved (warning) reporting
+
+Changes in version 1.2: (1999/01/17)
+- Operates with the tocloft package
+- Supports numbered bibliography and index headings
+
+First public release: version 1.0 (1998/10/24) 
+
+----------------------------------------------------------------- 
+  Author: Peter Wilson, Herries Press
+  Maintainer: Will Robertson (will dot robertson at latex-project dot org)
+  Copyright 1998--2004 Peter R. Wilson
+  Copyright 2009 Will Robertson
+ 
+  This work may be distributed and/or modified under the
+  conditions of the LaTeX Project Public License, either
+  version 1.3c of this license or (at your option) any 
+  later version: <http://www.latex-project.org/lppl.txt>
+
+  This work has the LPPL maintenance status "maintained".
+  The Current Maintainer of this work is Will Robertson.
+ 
+  This work consists of the files:
+README (this file)
+tocbibind.dtx
+tocbibind.ins
+  and the derived files:
+tocbibind.sty
+
+    The distribution consists of the following files:
+README (this file)
+tocbibind.dtx
+tocbibind.ins
+tocbibind.pdf (user manual)
+
+----------------------------------------------------------------- 
+
+    To install the package:
+- run: latex tocbibind.ins (which will generate tocbibind.sty)
+- Move tocbibind.sty to a location where LaTeX will find it
+  (typically in a local texmf tree at tex/latex/***) and refresh the
+  file database. See the FAQ on CTAN at help/uk-tex-faq or
+  http://www.tug.ac.uk/faq for more information on this.
+
+    To process the manual:
+- run: latex tocbibind.dtx
+- For an index, run: makeindex -s gind.ist tocbibind
+- run: latex tocbibind.dtx
+- Print tocbibind.dvi for a hardcopy of the package manual 

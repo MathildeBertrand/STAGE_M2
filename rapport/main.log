@@ -1,0 +1,942 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.6.23)  6 AUG 2018 09:57
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2018-04-01> patch level 2
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/04/06 v1.3b Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2018/02/14 3.18 The Babel package
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2018/02/14 3.18 Babel switching mechanism
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel-french/francais.ldf
+Language: francais 2018/03/25 v3.4c French support from the babel system
+
+
+Package francais.ldf Warning: Option `francais' for Babel is *deprecated*,
+(francais.ldf)                it might be removed sooner or later. Please
+(francais.ldf)                use `french' instead; reported on input line 31.
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel-french/french.ldf
+Language: french 2018/03/25 v3.4c French support from the babel system
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2018/02/14 3.18 Babel common definitions
+\babel@savecnt=\count89
+\U@D=\dimen103
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@dirlevel=\count90
+)
+\l@acadian = a dialect from \language\l@french 
+\FB@nonchar=\count91
+Package babel Info: Making : an active character on input line 415.
+Package babel Info: Making ; an active character on input line 416.
+Package babel Info: Making ! an active character on input line 417.
+Package babel Info: Making ? an active character on input line 418.
+\FBguill@level=\count92
+\FB@everypar=\toks16
+\FB@Mht=\dimen104
+\mc@charclass=\count93
+\mc@charfam=\count94
+\mc@charslot=\count95
+\std@mcc=\count96
+\dec@mcc=\count97
+\c@FBcaption@count=\count98
+\listindentFB=\skip43
+\descindentFB=\skip44
+\labelwidthFB=\skip45
+\leftmarginFB=\skip46
+\parindentFFN=\dimen105
+\FBfnindent=\skip47
+)))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/carlisle/scalefnt.sty)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+)))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+\Gin@req@height=\dimen106
+\Gin@req@width=\dimen107
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2014/10/28 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks18
+\verbatim@line=\toks19
+\verbatim@in@stream=\read1
+)
+(./tocbibind.sty
+Package: tocbibind 1999/09/12 v1.3a extra ToC listings
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/stdclsdv/stdclsdv.sty
+Package: stdclsdv 2009/09/04 v1.1a Sectional divisions
+)
+
+Package tocbibind Note: Using chapter style headings.
+
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/titlesec/titlesec.sty
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
+\ttl@box=\box26
+\beforetitleunit=\skip48
+\aftertitleunit=\skip49
+\ttl@plus=\dimen108
+\ttl@minus=\dimen109
+\ttl@toksa=\toks20
+\titlewidth=\dimen110
+\titlewidthlast=\dimen111
+\titlewidthfirst=\dimen112
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
+Package: appendix 2009/09/02 v1.2b extra appendix facilities
+\c@@pps=\count99
+\c@@ppsavesec=\count100
+\c@@ppsaveapp=\count101
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen113
+\captionmargin@=\dimen114
+\captionwidth=\dimen115
+\caption@tempdima=\dimen116
+\caption@indent=\dimen117
+\caption@parindent=\dimen118
+\caption@hangindent=\dimen119
+)
+\c@ContinuedFloat=\count102
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip50
+\subfigcapskip=\skip51
+\subfigcaptopadj=\dimen120
+\subfigbottomskip=\skip52
+\subfigcapmargin=\dimen121
+\subfiglabelskip=\skip53
+\c@subfigure=\count103
+\c@lofdepth=\count104
+\c@subtable=\count105
+\c@lotdepth=\count106
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/local/texlive/2018/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip54
+\subfig@bottom=\skip55
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2018/03/24 v5.7 Page Geometry
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2018/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count107
+\Gm@cntv=\count108
+\c@Gm@tempcnt=\count109
+\Gm@bindingoffset=\dimen122
+\Gm@wd@mp=\dimen123
+\Gm@odd@mp=\dimen124
+\Gm@even@mp=\dimen125
+\Gm@layoutwidth=\dimen126
+\Gm@layoutheight=\dimen127
+\Gm@layouthoffset=\dimen128
+\Gm@layoutvoffset=\dimen129
+\Gm@dimlist=\toks21
+)
+
+LaTeX Warning: Unused global option(s):
+    [times].
+
+(./main.aux)
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Info: Redefining \degres on input line 31.
+LaTeX Info: Redefining \dots on input line 31.
+LaTeX Info: Redefining \up on input line 31.
+
+(/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count110
+\scratchdimen=\dimen130
+\scratchbox=\box27
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count113
+\MPscratchDim=\dimen131
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks23
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/30 v0.27 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfigure package is loaded.
+Package caption Info: End \AtBeginDocument code.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(65.04256pt, 467.42276pt, 65.04256pt)
+* v-part:(T,H,B)=(65.04256pt, 714.96173pt, 65.04256pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=467.42276pt
+* \textheight=714.96173pt
+* \oddsidemargin=-7.22743pt
+* \evensidemargin=-7.22743pt
+* \topmargin=-44.22743pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+<logo.png, id=1, 625.58719pt x 130.23656pt>
+File: logo.png Graphic file (type png)
+<use logo.png>
+Package pdftex.def Info: logo.png  used on input line 40.
+(pdftex.def)             Requested size: 375.35521pt x 78.14253pt.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 57.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 57.
+[1
+
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logo.
+png (PNG copy)>] [1
+
+] (./main.toc)
+\tf@toc=\write3
+\openout3 = `main.toc'.
+
+ [2
+
+]
+
+LaTeX Warning: Reference `tandem' on page 1 undefined on input line 128.
+
+
+LaTeX Warning: Reference `tandem' on page 1 undefined on input line 129.
+
+
+LaTeX Warning: Citation `introsouris' on page 1 undefined on input line 130.
+
+<tandem.png, id=22, 448.67625pt x 176.15813pt>
+File: tandem.png Graphic file (type png)
+<use tandem.png>
+Package pdftex.def Info: tandem.png  used on input line 134.
+(pdftex.def)             Requested size: 269.20782pt x 105.69568pt.
+[1
+
+]
+
+LaTeX Warning: Citation `transposables' on page 2 undefined on input line 141.
+
+
+LaTeX Warning: Citation `pmid23945931' on page 2 undefined on input line 141.
+
+
+LaTeX Warning: Reference `H3K9me3' on page 2 undefined on input line 146.
+
+<H3K9me3.png, id=28, 505.89pt x 274.77657pt>
+File: H3K9me3.png Graphic file (type png)
+<use H3K9me3.png>
+Package pdftex.def Info: H3K9me3.png  used on input line 152.
+(pdftex.def)             Requested size: 303.53633pt x 164.8672pt.
+
+LaTeX Warning: Citation `intro' on page 2 undefined on input line 153.
+
+
+LaTeX Warning: Citation `intro' on page 2 undefined on input line 153.
+
+[2 <./tandem.png (PNG copy)> <./H3K9me3.png (PNG copy)>]
+
+LaTeX Warning: Reference `construction' on page 3 undefined on input line 161.
+
+
+LaTeX Warning: Citation `TALE1' on page 3 undefined on input line 161.
+
+
+LaTeX Warning: Citation `TALE2' on page 3 undefined on input line 161.
+
+<domainTale.png, id=35, 679.03688pt x 247.67531pt>
+File: domainTale.png Graphic file (type png)
+<use domainTale.png>
+Package pdftex.def Info: domainTale.png  used on input line 166.
+(pdftex.def)             Requested size: 373.47144pt x 136.22183pt.
+
+LaTeX Warning: Reference `R\IeC {\'e}sultats' on page 3 undefined on input line
+ 182.
+
+
+LaTeX Warning: Reference `R\IeC {\'e}sultats' on page 3 undefined on input line
+ 182.
+
+[3 <./domainTale.png (PNG copy)>]
+<result0.png, id=39, 866.23625pt x 526.96875pt>
+File: result0.png Graphic file (type png)
+<use result0.png>
+Package pdftex.def Info: result0.png  used on input line 189.
+(pdftex.def)             Requested size: 389.80272pt x 237.13374pt.
+
+
+LaTeX Warning: Reference `R\IeC {\'e}sultats2' on page 4 undefined on input lin
+e 196.
+
+
+LaTeX Warning: Reference `R\IeC {\'e}sultats2' on page 4 undefined on input lin
+e 196.
+
+
+LaTeX Warning: Reference `R\IeC {\'e}sultats2' on page 4 undefined on input lin
+e 197.
+
+<result.png, id=41, 858.20625pt x 468.75125pt>
+File: result.png Graphic file (type png)
+<use result.png>
+Package pdftex.def Info: result.png  used on input line 202.
+(pdftex.def)             Requested size: 386.18924pt x 210.9361pt.
+[4 <./result0.png>]
+
+LaTeX Warning: Citation `pmid19997069' on page 5 undefined on input line 211.
+
+[5 <./result.png>]
+
+LaTeX Warning: Citation `fastqc' on page 6 undefined on input line 238.
+
+
+LaTeX Warning: Citation `bowtie' on page 6 undefined on input line 244.
+
+
+LaTeX Warning: Citation `MACS' on page 6 undefined on input line 251.
+
+
+LaTeX Warning: Citation `SICER' on page 6 undefined on input line 251.
+
+
+LaTeX Warning: Citation `Venn' on page 6 undefined on input line 253.
+
+[6
+
+]
+
+LaTeX Warning: Citation `bedtools' on page 7 undefined on input line 276.
+
+
+LaTeX Warning: Citation `bedtools' on page 7 undefined on input line 277.
+
+
+LaTeX Warning: Citation `GO' on page 7 undefined on input line 290.
+
+
+LaTeX Warning: Citation `bedtools' on page 7 undefined on input line 293.
+
+[7]
+
+LaTeX Warning: Citation `repbase' on page 8 undefined on input line 302.
+
+
+LaTeX Warning: Citation `bowtie' on page 8 undefined on input line 303.
+
+
+LaTeX Warning: Citation `pmid25012247' on page 8 undefined on input line 307.
+
+
+LaTeX Warning: Citation `protocole' on page 8 undefined on input line 307.
+
+[8]
+
+LaTeX Warning: Citation `deeptools' on page 9 undefined on input line 335.
+
+
+LaTeX Warning: Citation `IGV' on page 9 undefined on input line 344.
+
+
+LaTeX Warning: Citation `circos' on page 9 undefined on input line 349.
+
+
+LaTeX Warning: Citation `ACParticle' on page 9 undefined on input line 355.
+
+[9]
+Overfull \hbox (17.10631pt too wide) in paragraph at lines 367--367
+|[]\T1/cmr/bx/n/17.28 Développement d'un pro-to-cole d'ana-lyse pour la marque
+ []
+
+
+LaTeX Warning: Reference `R\IeC {\'e}sultats exp\IeC {\'e}rimentaux' on page 10
+ undefined on input line 373.
+
+
+LaTeX Warning: Citation `repbase' on page 10 undefined on input line 378.
+
+
+LaTeX Warning: Citation `pmid25012247' on page 10 undefined on input line 379.
+
+<pipeline.png, id=68, 788.19469pt x 503.63156pt>
+File: pipeline.png Graphic file (type png)
+<use pipeline.png>
+Package pdftex.def Info: pipeline.png  used on input line 383.
+(pdftex.def)             Requested size: 417.7412pt x 266.92345pt.
+[10
+
+ <./pipeline.png (PNG copy)>]
+
+LaTeX Warning: Reference `tab1' on page 11 undefined on input line 392.
+
+
+Overfull \hbox (2.91577pt too wide) in paragraph at lines 394--401
+ [] 
+ []
+
+
+LaTeX Warning: Reference `fastqc' on page 11 undefined on input line 406.
+
+<fastqc.png, id=73, 621.07031pt x 452.4403pt>
+File: fastqc.png Graphic file (type png)
+<use fastqc.png>
+Package pdftex.def Info: fastqc.png  used on input line 410.
+(pdftex.def)             Requested size: 372.64505pt x 271.46628pt.
+[11 <./fastqc.png (PNG copy)>]
+
+LaTeX Warning: Reference `IGV' on page 12 undefined on input line 424.
+
+<GSATRPKM.png, id=77, 1255.69125pt x 354.57469pt>
+File: GSATRPKM.png Graphic file (type png)
+<use GSATRPKM.png>
+Package pdftex.def Info: GSATRPKM.png  used on input line 431.
+(pdftex.def)             Requested size: 502.26761pt x 141.82736pt.
+
+Overfull \hbox (34.84485pt too wide) in paragraph at lines 431--432
+ [][] 
+ []
+
+
+LaTeX Warning: Reference `IGVratio' on page 12 undefined on input line 437.
+
+<Rplot200.png, id=78, 1151.05031pt x 498.36188pt>
+File: Rplot200.png Graphic file (type png)
+<use Rplot200.png>
+Package pdftex.def Info: Rplot200.png  used on input line 443.
+(pdftex.def)             Requested size: 517.96785pt x 224.26077pt.
+
+Overfull \hbox (50.54509pt too wide) in paragraph at lines 443--444
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[12 <./GSATRPKM.png>]
+
+LaTeX Warning: Reference `tab2' on page 13 undefined on input line 454.
+
+
+Overfull \hbox (31.36853pt too wide) in paragraph at lines 456--475
+[][] 
+ []
+
+
+LaTeX Warning: Reference `MACS2D' on page 13 undefined on input line 482.
+
+
+LaTeX Warning: Reference `MACS2T' on page 13 undefined on input line 482.
+
+
+LaTeX Warning: Reference `circosTout' on page 13 undefined on input line 483.
+
+[13 <./Rplot200.png (PNG copy)>]
+
+LaTeX Warning: Reference `HD2' on page 14 undefined on input line 489.
+
+
+LaTeX Warning: Reference `HDm1M' on page 14 undefined on input line 489.
+
+
+LaTeX Warning: Reference `HDm2M' on page 14 undefined on input line 489.
+
+<manhattanPlot_lib18EPIC.png, id=86, 1003.75pt x 602.25pt>
+File: manhattanPlot_lib18EPIC.png Graphic file (type png)
+<use manhattanPlot_lib18EPIC.png>
+Package pdftex.def Info: manhattanPlot_lib18EPIC.png  used on input line 493.
+(pdftex.def)             Requested size: 401.49289pt x 240.89572pt.
+
+LaTeX Warning: Reference `circoss' on page 14 undefined on input line 502.
+
+[14 <./manhattanPlot_lib18EPIC.png (PNG copy)>]
+<circos_signal_rgunique_peaks_10-100_e20.png, id=90, 2258.4375pt x 2258.4375pt>
+
+File: circos_signal_rgunique_peaks_10-100_e20.png Graphic file (type png)
+<use circos_signal_rgunique_peaks_10-100_e20.png>
+Package pdftex.def Info: circos_signal_rgunique_peaks_10-100_e20.png  used on i
+nput line 508.
+(pdftex.def)             Requested size: 451.6795pt x 451.6795pt.
+ [15 <./circos_signal_rgunique_peaks_10-100_e20.png>]
+
+LaTeX Warning: Reference `ACP1' on page 16 undefined on input line 519.
+
+<ACP_uniques.png, id=95, 855.195pt x 784.9325pt>
+File: ACP_uniques.png Graphic file (type png)
+<use ACP_uniques.png>
+Package pdftex.def Info: ACP_uniques.png  used on input line 527.
+(pdftex.def)             Requested size: 273.668pt x 251.18352pt.
+
+LaTeX Warning: Reference `violin' on page 16 undefined on input line 538.
+
+[16 <./ACP_uniques.png>]
+<violinPlot_lengthEPIC.png, id=101, 894.34125pt x 896.34875pt>
+File: violinPlot_lengthEPIC.png Graphic file (type png)
+<use violinPlot_lengthEPIC.png>
+Package pdftex.def Info: violinPlot_lengthEPIC.png  used on input line 544.
+(pdftex.def)             Requested size: 313.02412pt x 313.72676pt.
+
+
+LaTeX Warning: Reference `Venny' on page 17 undefined on input line 553.
+
+<Venny.png, id=102, 820.06375pt x 490.83376pt>
+File: Venny.png Graphic file (type png)
+<use Venny.png>
+Package pdftex.def Info: Venny.png  used on input line 560.
+(pdftex.def)             Requested size: 246.02103pt x 147.25125pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[17 <./violinPlot_lengthEPIC.png>]
+<perteimg.png, id=107, 257.96375pt x 120.45pt>
+File: perteimg.png Graphic file (type png)
+<use perteimg.png>
+Package pdftex.def Info: perteimg.png  used on input line 580.
+(pdftex.def)             Requested size: 103.18365pt x 48.17914pt.
+<gainimg.png, id=108, 270.00874pt x 111.41624pt>
+File: gainimg.png Graphic file (type png)
+<use gainimg.png>
+Package pdftex.def Info: gainimg.png  used on input line 583.
+(pdftex.def)             Requested size: 108.00157pt x 44.5657pt.
+<Redis.png, id=109, 237.88875pt x 159.59625pt>
+File: Redis.png Graphic file (type png)
+<use Redis.png>
+Package pdftex.def Info: Redis.png  used on input line 585.
+(pdftex.def)             Requested size: 95.15381pt x 63.83736pt.
+<NoRedis.png, id=110, 272.01625pt x 166.6225pt>
+File: NoRedis.png Graphic file (type png)
+<use NoRedis.png>
+Package pdftex.def Info: NoRedis.png  used on input line 587.
+(pdftex.def)             Requested size: 108.80457pt x 66.64781pt.
+
+
+LaTeX Warning: Reference `genes' on page 18 undefined on input line 595.
+
+[18 <./Venny.png> <./perteimg.png> <./gainimg.png> <./Redis.png> <./NoRedis.png
+>]
+<VennDiag_HDvsHDm_e20.png, id=119, 1212.53pt x 732.7375pt>
+File: VennDiag_HDvsHDm_e20.png Graphic file (type png)
+<use VennDiag_HDvsHDm_e20.png>
+Package pdftex.def Info: VennDiag_HDvsHDm_e20.png  used on input line 600.
+(pdftex.def)             Requested size: 242.50171pt x 146.5449pt.
+
+
+LaTeX Warning: Reference `gain' on page 19 undefined on input line 606.
+
+<IGV_gain.png, id=120, 1685.29625pt x 627.34375pt>
+File: IGV_gain.png Graphic file (type png)
+<use IGV_gain.png>
+Package pdftex.def Info: IGV_gain.png  used on input line 611.
+(pdftex.def)             Requested size: 471.87975pt x 175.65504pt.
+
+Overfull \hbox (4.45699pt too wide) in paragraph at lines 611--613
+ [][] 
+ []
+
+
+LaTeX Warning: Reference `perte' on page 19 undefined on input line 618.
+
+<IGV_chr17.png, id=121, 1677.26625pt x 564.1075pt>
+File: IGV_chr17.png Graphic file (type png)
+<use IGV_chr17.png>
+Package pdftex.def Info: IGV_chr17.png  used on input line 623.
+(pdftex.def)             Requested size: 469.63135pt x 157.94902pt.
+
+Overfull \hbox (2.20859pt too wide) in paragraph at lines 623--625
+ [][] 
+ []
+
+[19 <./VennDiag_HDvsHDm_e20.png> <./IGV_gain.png>]
+
+LaTeX Warning: Citation `repbase' on page 20 undefined on input line 637.
+
+
+LaTeX Warning: Citation `pmid25012247' on page 20 undefined on input line 642.
+
+
+LaTeX Warning: Reference `tab2' on page 20 undefined on input line 646.
+
+
+LaTeX Warning: Reference `ACP' on page 20 undefined on input line 648.
+
+[20 <./IGV_chr17.png>]
+<RepBase_PCA.png, id=131, 673.76718pt x 601.4972pt>
+File: RepBase_PCA.png Graphic file (type png)
+<use RepBase_PCA.png>
+Package pdftex.def Info: RepBase_PCA.png  used on input line 658.
+(pdftex.def)             Requested size: 303.19243pt x 270.67123pt.
+
+
+LaTeX Warning: Reference `Maplot' on page 21 undefined on input line 670.
+
+[21 <./RepBase_PCA.png>]
+<RepEnrich_PCA.png, id=136, 1437.37pt x 819.06pt>
+File: RepEnrich_PCA.png Graphic file (type png)
+<use RepEnrich_PCA.png>
+Package pdftex.def Info: RepEnrich_PCA.png  used on input line 688.
+(pdftex.def)             Requested size: 503.08704pt x 286.6753pt.
+
+Overfull \hbox (35.66428pt too wide) in paragraph at lines 688--690
+[][] 
+ []
+
+[22 <./RepEnrich_PCA.png>] [23
+
+]
+
+LaTeX Warning: Citation `norma' on page 24 undefined on input line 736.
+
+
+LaTeX Warning: Citation `MACS' on page 24 undefined on input line 740.
+
+
+LaTeX Warning: Citation `SICER' on page 24 undefined on input line 740.
+
+
+LaTeX Warning: Reference `MACS2D' on page 24 undefined on input line 743.
+
+
+LaTeX Warning: Reference `MACS2T' on page 24 undefined on input line 743.
+
+[24]
+
+LaTeX Warning: Citation `SICER' on page 25 undefined on input line 746.
+
+
+LaTeX Warning: Citation `SICER' on page 25 undefined on input line 746.
+
+
+LaTeX Warning: Reference `circoss' on page 25 undefined on input line 748.
+
+
+LaTeX Warning: Reference `circosTout' on page 25 undefined on input line 748.
+
+
+LaTeX Warning: Citation `Htseqcount' on page 25 undefined on input line 762.
+
+[25]
+
+LaTeX Warning: Citation `Discu1' on page 26 undefined on input line 774.
+
+
+LaTeX Warning: Citation `Discu2' on page 26 undefined on input line 774.
+
+[26] [27
+
+] [28
+
+]
+Overfull \hbox (3.1763pt too wide) in paragraph at lines 824--827
+\T1/cmr/m/n/12 Mes connais-sances en bio-lo-gies ont été fon-da-men-tales pour,
+ d'une part com-prendre le contexte
+ []
+
+(./main.bbl [29
+
+] [30
+
+]
+Underfull \hbox (badness 1152) in paragraph at lines 137--141
+[]\T1/cmr/m/n/12 Skvir, N. (2017).  Re-pen-rich2 is an up-da-ted me-thod to es-
+ti-mate re-
+ []
+
+) [31] [32
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+[]\T1/cmr/m/n/12 Librairie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 TALE-HD
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+[]\T1/cmr/m/n/12 Librairie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 TALE-HD
+ []
+
+
+Overfull \hbox (1.20735pt too wide) in paragraph at lines 843--843
+[]\T1/cmr/m/n/12 Librairie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 TALE-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 HD-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 mutée
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+[]\T1/cmr/m/n/12 Librairie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 TALE-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 843--843
+\T1/cmr/m/n/12 HD-mutée
+ []
+
+[33]
+<circosMacs.png, id=176, 2258.4375pt x 2258.4375pt>
+File: circosMacs.png Graphic file (type png)
+<use circosMacs.png>
+Package pdftex.def Info: circosMacs.png  used on input line 864.
+(pdftex.def)             Requested size: 451.6795pt x 451.6795pt.
+ [34 <./circosMacs.png>]
+<circos_signal_peak_17_diffPeaks.png, id=182, 2258.4375pt x 2258.4375pt>
+File: circos_signal_peak_17_diffPeaks.png Graphic file (type png)
+<use circos_signal_peak_17_diffPeaks.png>
+Package pdftex.def Info: circos_signal_peak_17_diffPeaks.png  used on input lin
+e 875.
+(pdftex.def)             Requested size: 361.35739pt x 361.35739pt.
+ [35 <./circos_signal_peak_17_diffPeaks.png>]
+<circos2.png, id=187, 2258.4375pt x 2258.4375pt>
+File: circos2.png Graphic file (type png)
+<use circos2.png>
+Package pdftex.def Info: circos2.png  used on input line 913.
+(pdftex.def)             Requested size: 451.6795pt x 451.6795pt.
+
+[36
+
+ <./circos2.png>]
+<manhattanPlot_lib19EPIC.png, id=192, 1003.75pt x 602.25pt>
+File: manhattanPlot_lib19EPIC.png Graphic file (type png)
+<use manhattanPlot_lib19EPIC.png>
+Package pdftex.def Info: manhattanPlot_lib19EPIC.png  used on input line 923.
+(pdftex.def)             Requested size: 451.68333pt x 271.01pt.
+<manhattanPlot_lib20EPIC.png, id=193, 1003.75pt x 602.25pt>
+File: manhattanPlot_lib20EPIC.png Graphic file (type png)
+<use manhattanPlot_lib20EPIC.png>
+Package pdftex.def Info: manhattanPlot_lib20EPIC.png  used on input line 931.
+(pdftex.def)             Requested size: 451.68333pt x 271.01pt.
+ [37 <./manhattanPlot_lib19EPIC.png (PNG copy)> <./manhattanPlot_lib20EPIC.png 
+(PNG copy)>] (./main.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5362 strings out of 492649
+ 80629 string characters out of 6129622
+ 159369 words of memory out of 5000000
+ 9127 multiletter control sequences out of 15000+600000
+ 18162 words of font info for 39 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,15n,45p,1399b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
+/usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
+sr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/lo
+cal/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/loca
+l/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/
+texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/te
+xlive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texl
+ive/2018/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texliv
+e/2018/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/
+2018/texmf-dist/fonts/type1/public/cm-super/sfcc1440.pfb></usr/local/texlive/20
+18/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/texlive/2018
+/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/texlive/2018/t
+exmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2018/tex
+mf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2018/texmf
+-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2018/texmf-d
+ist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2018/texmf-dis
+t/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2018/texmf-dist/
+fonts/type1/public/cm-super/sfti1440.pfb>
+Output written on main.pdf (40 pages, 2525541 bytes).
+PDF statistics:
+ 261 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
+ 0 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+

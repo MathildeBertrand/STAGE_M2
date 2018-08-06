@@ -1,0 +1,46 @@
+\babel@toc {french}{}
+\thispagestyle {empty}
+\contentsline {chapter}{Introduction}{1}
+\contentsline {section}{\numberline {1.}Organisation du g\IeC {\'e}nome de la souris}{1}
+\contentsline {section}{\numberline {2.}La marque H3K9me3}{2}
+\contentsline {section}{\numberline {3.}Modification \IeC {\'e}pig\IeC {\'e}n\IeC {\'e}tique de H3K9me3}{3}
+\contentsline {section}{\numberline {4.}Objectifs du stage}{5}
+\contentsline {chapter}{Mat\IeC {\'e}riels et m\IeC {\'e}thodes}{6}
+\contentsline {section}{\numberline {1.}R\IeC {\'e}cup\IeC {\'e}ration des librairies et contr\IeC {\^o}le qualit\IeC {\'e}}{6}
+\contentsline {section}{\numberline {2.}Alignement sur g\IeC {\'e}nome de r\IeC {\'e}f\IeC {\'e}rence}{6}
+\contentsline {section}{\numberline {3.}D\IeC {\'e}tection de pics}{6}
+\contentsline {section}{\numberline {4.}Analyses sp\IeC {\'e}cifiques des r\IeC {\'e}gions uniques}{7}
+\contentsline {subsection}{\numberline {4.1}Traitements post-alignements et post-d\IeC {\'e}tection de pics}{7}
+\contentsline {subsection}{\numberline {4.2}Annotation des pics sur les g\IeC {\`e}nes}{7}
+\contentsline {subsection}{\numberline {4.3}Analyse des r\IeC {\'e}gions uniques sur g\IeC {\'e}nome d\IeC {\'e}coup\IeC {\'e} en fen\IeC {\^e}tres}{8}
+\contentsline {section}{\numberline {5.}Analyses sp\IeC {\'e}cifiques des \IeC {\'e}l\IeC {\'e}ments r\IeC {\'e}p\IeC {\'e}t\IeC {\'e}es }{8}
+\contentsline {subsection}{\numberline {5.1}Alignement contre une base de donn\IeC {\'e}es d'\IeC {\'e}l\IeC {\'e}ments r\IeC {\'e}p\IeC {\'e}t\IeC {\'e}s (RepBase)}{8}
+\contentsline {subsection}{\numberline {5.2}Utilisation de RepEnrich2}{8}
+\contentsline {subsection}{\numberline {5.3}R\IeC {\'e}alisation des MAplot}{8}
+\contentsline {section}{\numberline {6.}Analyse du signal}{9}
+\contentsline {subsection}{\numberline {6.1}Normalisation du signal}{9}
+\contentsline {subsection}{\numberline {6.2}Visualisation du signal}{9}
+\contentsline {section}{\numberline {7.}Analyse en composante principale (ACP)}{9}
+\contentsline {section}{\numberline {8.}Mise \IeC {\`a} disposition des scripts}{9}
+\contentsline {chapter}{R\IeC {\'e}sultats}{10}
+\contentsline {section}{\numberline {1.}D\IeC {\'e}veloppement d'un protocole d'analyse pour la marque H3K9me3}{10}
+\contentsline {section}{\numberline {2.}Contr\IeC {\^o}le qualit\IeC {\'e} et choix du g\IeC {\'e}nome de r\IeC {\'e}f\IeC {\'e}rence}{11}
+\contentsline {section}{\numberline {3.}Perte mod\IeC {\'e}r\IeC {\'e}e de signal au p\IeC {\'e}ricentrom\IeC {\`e}re}{12}
+\contentsline {section}{\numberline {4.}Une redistribution difficile \IeC {\`a} mettre en \IeC {\'e}vidence sur les r\IeC {\'e}gions uniques}{13}
+\contentsline {section}{\numberline {5.}Modifications du signal H3K9me3 sur les \IeC {\'e}l\IeC {\'e}ments r\IeC {\'e}p\IeC {\'e}t\IeC {\'e}s }{20}
+\contentsline {chapter}{Discussion}{23}
+\contentsline {section}{\numberline {1.}Comportement des r\IeC {\'e}plicats}{23}
+\contentsline {section}{\numberline {2.}Suppression des biais de PCR}{23}
+\contentsline {section}{\numberline {3.}Normalisation par l'Input}{24}
+\contentsline {section}{\numberline {4.}Choix des param\IeC {\`e}tres et des algorithmes pour la d\IeC {\'e}tection de pics}{25}
+\contentsline {section}{\numberline {5.}G\IeC {\`e}nes marqu\IeC {\'e}s dans les deux conditions}{26}
+\contentsline {section}{\numberline {6.}El\IeC {\'e}ments r\IeC {\'e}p\IeC {\'e}t\IeC {\'e}s}{26}
+\contentsline {chapter}{Conclusion}{27}
+\contentsline {chapter}{Bibliographie}{30}
+\contentsline {chapter}{Appendices}{32}
+\contentsline {section}{\numberline {1.}Nombre de reads s'alignant sur les satellites majeurs assembl\IeC {\'e}s dans le g\IeC {\'e}nome de r\IeC {\'e}f\IeC {\'e}rence mm10}{33}
+\contentsline {section}{\numberline {2.}D\IeC {\'e}tection de pics avec MACS2}{34}
+\contentsline {subsection}{\numberline {2.1}Param\IeC {\`e}tres par d\IeC {\'e}faut}{34}
+\contentsline {subsection}{\numberline {2.2}Test de diff\IeC {\'e}rents param\IeC {\`e}tres de MACS2}{35}
+\contentsline {section}{\numberline {3.}Pics EPIC non filtr\IeC {\'e}s}{36}
+\contentsline {section}{\numberline {4.}Manhattan plot pour HDm1 et HDm2}{37}

@@ -1,0 +1,72 @@
+
+ \begin{theindex} 
+ \makeatletter\scan@allowedfalse
+{\bfseries\hfil Symbols\hfil}\nopagebreak
+
+  \item \verb*+\@SCD@check@c+\pfill 45, \main{47}
+  \item \verb*+\@SCD@check@command+\pfill 43, \main{45}
+  \item \verb*+\@SCD@check@eq+\pfill 51, 52, \main{56}
+  \item \verb*+\@ifclassloaded+\pfill 9--14, 16, 18--21
+  \item \verb*+\@ifundefined+\pfill 50
+  \item \verb*+\@onlypreamble+\pfill 44, 46, 55, 60
+  \item \verb*+\@star@or@long+\pfill 41
+
+  \indexspace
+{\bfseries\hfil C\hfil}\nopagebreak
+
+  \item \verb*+\chapter+\pfill 30
+  \item \verb*+\csname+\pfill 48, 53, 54
+
+  \indexspace
+{\bfseries\hfil E\hfil}\nopagebreak
+
+  \item \verb*+\endcsname+\pfill 48, 53, 54
+
+  \indexspace
+{\bfseries\hfil I\hfil}\nopagebreak
+
+  \item \verb*+\ifSCDchapter+\pfill \usage{2}, \main{4}
+  \item \verb*+\ifSCDknownclass+\pfill \usage{2}, \main{4}
+  \item \verb*+\ifSCDnodivs+\pfill \usage{2}, \main{4}
+  \item \verb*+\ifSCDpart+\pfill \usage{2}, \main{4}
+  \item \verb*+\ifSCDSameDefinition+\pfill \usage{2}, \main{40}
+  \item \verb*+\ifSCDsection+\pfill \usage{2}, \main{4}
+
+  \indexspace
+{\bfseries\hfil N\hfil}\nopagebreak
+
+  \item \verb*+\newif+\pfill 4--8, 40
+
+  \indexspace
+{\bfseries\hfil P\hfil}\nopagebreak
+
+  \item \verb*+\part+\pfill 25
+  \item \verb*+\ProvidesPackage+\pfill 3
+
+  \indexspace
+{\bfseries\hfil R\hfil}\nopagebreak
+
+  \item \verb*+\renew@command+\pfill 49
+  \item \verb*+\reserved@a+\pfill 48--51, 54
+
+  \indexspace
+{\bfseries\hfil S\hfil}\nopagebreak
+
+  \item \verb*+\SCDchapterfalse+\pfill 6
+  \item \verb*+\SCDchaptertrue+\pfill 9, 10, 18, 19, 31
+  \item \verb*+\SCDCheckCommand+\pfill \usage{2}, \main{41}
+  \item \verb*+\SCDknownclassfalse+\pfill 4
+  \item \verb*+\SCDknownclasstrue+\pfill 9--14, 16, 18--21
+  \item \verb*+\SCDnodivsfalse+\pfill 8, 28, 31, 36
+  \item \verb*+\SCDnodivstrue+\pfill 15, 17, 22, 24
+  \item \verb*+\SCDpartfalse+\pfill 15, 17, 22, 26
+  \item \verb*+\SCDparttrue+\pfill 5
+  \item \verb*+\SCDquit+\pfill \usage{2}, \main{39}
+  \item \verb*+\SCDSameDefinitionfalse+\pfill 58
+  \item \verb*+\SCDSameDefinitiontrue+\pfill 42
+  \item \verb*+\SCDsectionfalse+\pfill 15, 17, 22, 34
+  \item \verb*+\SCDsectiontrue+\pfill 7
+  \item \verb*+\section+\pfill 33
+  \item \verb*+\string+\pfill 48, 50, 53, 54
+
+ \end{theindex}

@@ -1,0 +1,657 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\newcommand{\scaption}[1]{\caption{\footnotesize{#1}}}
+%\usepackage[latin1]{inputenc} % accents
+\usepackage[T1]{fontenc}      % caractères français
+\usepackage{geometry}         % marges
+\usepackage[francais]{babel}  % langue
+\usepackage{lscape}
+\usepackage{graphicx}         % images
+\usepackage{verbatim}         % texte préformaté
+\usepackage[nottoc, notlof, notlot]{tocbibind}
+\usepackage{titlesec}
+\usepackage[toc,page]{appendix}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{geometry}
+\geometry{legalpaper, margin=1.in}
+
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\title{Rapport de stage}      
+\author{Mathilde Bertrand}           
+\date{12 février 2018-28 juillet 2018}           
+
+
+\begin{document}
+%\maketitle
+\makeatletter
+  \begin{titlepage}
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+      \center % Center everything on the page
+      
+      \textsc{\LARGE Université Paris Saclay}\\[0.5cm] % Name of your university/college
+      \textsc{\Large Master Bio-informatique et Bio-statistiques}\\[0.5cm] % Major heading such as course name
+      \textsc{\large Rapport de stage}\\[2cm]
+  
+      \HRule \\[0.4cm]
+	{ \huge \bfseries Analyse par ChIP-Seq de l’impact d’une modification ciblée de la 
+chromatine centromérique sur l’ensemble du génome\\[0.4cm] % Title of your document 
+ }\HRule \\[0.5cm]
+\textsc{\Large  Mathilde \textsc{Bertrand}}\\[2.5cm]
+\begin{minipage}{0.6\textwidth}
+\begin{flushleft} \large
+\emph{Encadrants:} \\
+Judith\textsc{ Lopes}\\ % Supervisor's Name
+Evelyne\textsc{ Duvernois-Berthet}
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.35\textwidth}
+\begin{flushright} \large
+\emph{Tuteur de l'Université:}\\
+Daniel \textsc{ Gautheret}
+\end{flushright}
+\end{minipage}\\[2cm]
+
+{\Large \@date}\\[4cm] % Date, change the \today to a set date if you want to be precise
+
+\begin{figure}[t]
+\centering
+      \includegraphics[scale=0.75]{logo.png}\hfill
+\end{figure}
+
+Muséum  National d’Histoire Naturelle\\
+\emph{Laboratoire Structure et Instabilité des Génomes}\\
+\emph{Equipe «ADN répété, Chromatine et Evolution»}\\
+INSERM U1154, CNRS UMR7196\\
+
+%----------------------------------------------------------------------------------------
+
+
+
+ \end{titlepage}
+\makeatother
+\newpage
+\chapter*{Remerciements}
+\newpage
+\tableofcontents 
+
+
+\newpage
+
+\chapter*{Introduction}
+\titlespacing{\chapter}{0pt}{*2}{*2}
+
+\addcontentsline{toc}{chapter}{Introduction}
+
+Mon stage de fin de master s'est déroulé sur une période de cinq mois et demi de février à juillet 2018 au sein du Muséum National d'Histoire Naturelle. 
+Avant de décrire précisément l'approche que j'ai utilisée pour analyser des données de ChIP-Seq issues d'une modification ciblée de la chromatine centromérique, 
+je vais d'abord vous décrire l'organisation du génome murin, puis je présenterai la modification épigénétique de la chromatine qui a été réalisée au laboratoire ainsi que les premiers résultats expérimentaux qui ont été obtenus.
+Enfin je parlerai de mes objectifs de stage.
+\section{Organisation du génome de la souris}
+Dans les cellules eucaryotes, le matériel génétique est organisé en une structure composée d’ADN et de protéines dite structure chromatinienne.
+On distingue  l’euchromatine, la forme la moins compactée et l’hétérochromatine la forme la plus compactée de l’ADN.
+Pour permettre cette compaction, l’ADN s’enroule autour de protéines histones.  
+Ces dernières subissent de nombreuses modifications, en particulier des méthylations, qui vont influencer la transcription des gènes.
+
+\bigskip% Taille du génome de la souris 3 400 Mbp.
+Chez la souris, l'information génétique est stockée sur 20 paires de chromosomes acrocentriques. Ce caractère acrocentrique impose le positionnement du centromère, une région spécialisée des chromosomes, à une extrémité télomérique. 
+Le centromère participe à de nombreuses fonctions comme la division cellulaire, l’organisation nucléaire ou encore la régulation de l’expression des gènes.
+Les séquences le constituant sont répétées en tandem et appelées ``satellites mineurs''. Ces séquences sont répétées sur une longueur de 120 pb. 
+\newline Flanquant le centromère, on trouve une région dite péricentromérique composée de séquences répétées appelées ``satellites majeurs'' sur une longueur de 234 pb. 
+Il s'agit d'une région d'hétérochromatine constitutive : elle est riche en séquences répétées, pauvre en gènes et transcriptionnellement inactive (Figure \ref{tandem}).
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.6]{tandem.png}
+\scaption{Organisation des chromosomes de souris : le centromère schématisé est situé à une extrémité télomérique (à droite sur le schéma). En rouge, les satellites majeurs sont dans le péricentromère. En vert, les satellites mineurs dans le centromère}
+\label{tandem}
+\end{figure}
+
+
+Les éléments répétés constituent au moins 50\% du génome de la souris. 
+96\% de ces éléments sont des rétrotransposons \cite{transposables} que l'on classe en trois grandes familles selon leur mécanisme de transposition : les SINEs (short interpersed nuclear elements), les LINEs (long interpersed nuclear elements) et les ERVs (endogenous retrovirus). A eux seuls les LINE-1 représentent plus d'un tiers de la taille du génome de la souris \cite{pmid23945931}. Très abondants, ils jouent un rôle dans la structure et la fonction génomique.
+
+\newpage
+\section{La marque H3K9me3}
+
+L'hétérochromatine péricentromérique est caractérisée par plusieurs marques épignétiques dont la triméthylation de la lysine 9 sur l'histone H3 (H3K9me3). H3K9me3 permet de fixer la protéine de l'hétérochromatine 1 (HP1) qui est ensuite capable de recruter d'autres protéines qui vont modifier les histones pour réprimer l'expression des gènes (Figure \ref{H3K9me3}). Cette marque, contribue donc, en inhibant leur transcription, à la régulation des gènes. 
+\newline H3K9me3 est essentiellement présente dans les péricentromères et les télomères mais elle constitue également l'hétérochromatine facultative et constitutive.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{H3K9me3.png}
+\scaption{La marque H3K9me3 d'après \cite{intro}}
+\label{H3K9me3}
+\end{figure}
+\section{Modification épigénétique de H3K9me3}
+Afin de déterminer la fonction réelle de cette marque épigénétique dans les fonctions du centromère, un modèle murin sur une lignée de souris NIH-3T3, une lignée de fibroblastes embryonnaires cultivés \textit{in vitro}, a été développé au laboratoire. 
+\newline Ce modèle vise à modifier l'hétrochromatine grâce à l'utilisation d'une protéine TALE (transcription activator-like effectors). 
+Les TALEs sont des protéines issues de bactéries qui possèdent un domaine de liaison à l'ADN composé de 34 acides aminés. Les acides aminés 12 et 13 sont modulables et permettent de reconnaitre une base spécifique de l'ADN selon un code (Figure \ref{construction}).
+Dans notre cas, la protéine TALE été conçue pour pouvoir se fixer sur les satellites majeurs des chromosomes. 
+\newline Deux constructions utilisant la TALE ont été réalisées : 
+\begin{itemize}
+ \item TALE-HD-GFP (= condition traitée): Une histone déméthylase est fusionnée à la TALE de manière à obtenir une déméthylation de H3K9me3 en H3K9me. 
+  \item TALE-HDmutée-GFP (= condition contrôle): L'histone déméthylase a été mutée pour la rendre inactive. Cette expérience sert de contrôle car elle garde la marque sous sa forme triméthylée.
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.45]{domainTale.png}
+\scaption{Représentation de l'organisation de la protéine TALE au niveau du domaine de liaison à l'ADN. A droite, les codes des acides aminés hypervariables.}
+\label{construction}
+\end{figure}
+
+Dans des cellules non transfectées avec la TALE-HD, le marquage de H3K9me3 (en rouge) est au même endroit que le marquage des centromères (en jaune). La marque H3K9me3 est donc majoritairement visibles dans les régions centromériques lorsque les cellules ne sont pas transfectées (Figure  \ref{Résultats}).
+\newline Dans les cellules transfectées avec la TALE-HD-GFP, la protéine TALE (en vert) est localisée au péricentromère, ce qui sous-tend l'idée qu'elle s'est bien fixée sur les satellites majeurs. 
+ H3K9me3, quand-à-elle n'y est plus présente. En effet, il semble que la diminution de la marque dans les régions centromériques s'accompagne d'un marquage plus diffus le long des bras des chromosomes. Cette observation suggère une redistribution de H3K9me3 en dehors des régions centromériques.
+Remarquons que la TALE a été injectée dans les cellules par transfection. Par conséquent, toutes les cellules n'ont pas reçues la même quantité de plasmide.
+
+
+\begin{figure}[!ht]
+\centering 1.
+\includegraphics[scale=0.31]{result0.png}\\2.
+\includegraphics[scale=0.31]{result.png}
+\scaption{ Résultats expérimentaux sur des cellules en métaphase 
+En bleu l'ADN, en rouge la marque H3K9me3, en jaune le centromère et en vert la TALE
+1. Cellules non transfectées 
+2. Cellules transfectées}
+\label{Résultats}
+\end{figure}
+
+\bigskip
+Le laboratoire souhaite à présent confirmer ce résultat par une méthode à plus forte résolution : un séquençage en ChIP-Seq.
+Le ChIP-Seq ou immunoprécipitation de la chromatine est une technologie permettant de visualiser les interactions entre les protéines et l'ADN. Expérimentalement, les protéines sont fixées à l'ADN qui est ensuite fragmenté. Puis la marque H3K9me3 est immunoprécipitée. Enfin les protéines sont retirées, l'ADN est préparé et séquencé.
+La technologie de séquençage qui a été utilisée au laboratoire est Illumina HiSeq \cite{pmid19997069} et 
+le séquençage est en paired-end, ce qui implique que les deux extrémités des fragments d'ADN sont séquencés.
+\newline Les cellules exprimant la TALE-HD (=traitées par la déméthylase) ou la TALE-HDm (= contrôles) ont été séquencées pour cartographier la répartition de H3K9me3 à l'échelle du génome entier.
+Un Input correspondant à de la chromatine non immunoprécipitée a également été séquencé. Ce dernier est nécessaire pour déterminer le bruit de fond de l'expérience.
+
+\section{Objectifs du stage}
+
+Mon stage s'est déroulé dans l'unité ``Structure et Instabilité des Génomes'' du Muséum National d'Histoire Naturelle. 
+Les mécanismes moléculaires de la réparation de l’ADN, l’instabilité des génomes, l’évolution et la biologie des séquences répétées du génome ainsi que l’étude des mécanismes épigénétiques dans la stabilité des génomes sont les principaux sujets d'étude de cette unité.
+J'ai été intégrée à l'équipe ``ADN répétée, Chromatine et évolution''.
+
+\bigskip
+Dans ce contexte, mon stage a pour objectif de développer un protocole d'analyse de ces données de séquençage et de localiser la redistribution de H3K9me3 si elle existait.
+\newline
+Comme H3K9me3 est une marque hétérochromatinienne, il est possible qu'elle se redistibue à la fois sur des régions répétées et sur des régions uniques. 
+\newline Dans ce rapport, je vais donc développer les différentes stratégies que j'ai mises en place pendant ce stage. Je parlerai de l'analyse des régions uniques pour déterminer si il exsite ou non une redistribution sur les gènes ou les régions intergéniques.
+et terminerai l'analyse par l'étude des régions répétées.
+
+
+
+\chapter*{Matériel et méthodes}
+
+\setcounter{section}{0}
+\addcontentsline{toc}{chapter}{Matériels et méthodes}
+
+  
+    \section{Récupération des librairies et contrôle qualité}
+    
+    Les données ont été obtenues par immunoprécipitation de  la marque H3K9me3 dans des cellules de souris NIH-3T3 et séquencées par la technologie Illumina HiSeq 2000 à l'Institut Curie. Le séquençage a été réalisé en paired-end et génère des fragments de 2*100 paires de bases.
+5 librairies ont été séquencées : un input correspondant à de la chromatine non immunoprécipitée, deux réplicats qui ont été transfectés par la TALE-HD et deux réplicats  transfectés par la TALE-HD mutée (=contrôle). Les librairies ont été récupérées au format fastq.
+\newline De manière à pouvoir confirmer que la présence de la TALE ne perturbe pas le signal ``normal'' de H3K9me3, on travaille également avec des données publiques. La technologie de séquençage ainsi que la marque immunoprécipitée sont les mêmes que pour nos librairies, seules les cellules sont différentes (CD8+T : une lignée cellulaire de lymphocytes). Le séquençage est également en paired-end et les fragments générées sont de 2*150 paires de bases. Ces données ont été récupérées sur la banque de données SRA (Sequence Read Archive) du NCBI avec les identifiants suivants : SRR6228881 et SRR6228882. 
+
+\bigskip
+Une fois les différentes librairies récupérées, l’analyse qualité des séquences a été réalisée avec le programme FastQC \cite{fastqc} (version 0.11.7). 
+Pour nos librairies, les cinq premières paires de bases et pour les librairies publiques les dix premières paires de bases ont été retirées de manière à améliorer la qualité globale de nos séquences. Cette étape a été réalisée grâce à FASTX Toolkit (http://hannonlab.cshl.edu/fastx\_toolkit/) ; version 0.0.14).
+    
+    
+    \section{Alignement sur génome de référence}
+    
+    La détermination du génome de référence (cf Résultats, contrôle qualité et choix du génome de référence) a été réalisée en utilisant bowtie2 \cite{bowtie}(version 2.2.4) avec les paramètres par défaut sur l'input.
+    
+    Le génome de référence mm10 au format fasta et sous la forme primary assembly a été récupéré sur Ensembl. L'indexation de ce génome a été réalisé avec le logiciel bowtie2 (bowtie2-build).
+    Ensuite, nos librairies et les librairies publiques ont été alignées avec l'index construit en autorisant au maximum 2 hits multiples (paramètre -k 2).
+
+  
+     \section{Détection de pics}
+MACS2 \cite{MACS} (version 2.1.1.20160309) (paramètres : -bampe -broad) a été utilisé pour mettre en évidence les régions marquées par l'expérience.
+\newline Des diagrammes de Venn ont permis de comparer les pics des différentes conditions entre eux. Ces diagrammes ont été obtenus avec Venny \cite{Venn}.
+   \newline Les pics ont été annotés avec une annotation de gènes récupérée sur Ensembl/Biomart au format gff.
+   
+
+   \section{Analyses spécifiques des régions uniques}
+   \subsection{Traitements post-mapping et post-détection-de-Pics}
+       Pour l'étude des régions uniques, des filtres ont été effectués en sortie de mapping. Ainsi, les samtools (version 1.3.1) ont été utilisés  manipuler les fichiers de sortie :
+
+
+\begin{itemize}
+\item Elimination des reads non concordants en gardant les reads qui possèdent le flag 0x2 (-f 0x2)
+\item Retrait des biais de PCR avec rmdup option -S
+\item Retrait des hits multiples en exluant les reads qui possèdent le flag 256 (-F 256)
+\end{itemize}
+
+\bigskip
+Le nombre de reads dans chacune des librairies après application des différents filtres a été calculé en utilisant les samtools : samtools view -F 0x904 file | sort | uniq | wc -l. 
+\newline Le flag -F 0x904 permet de retirer les reads non mappés et ceux qui sont des alignements secondaires. 
+
+
+\bigskip
+J'ai écris un script pour mettre en communs les pics entre deux réplicats. La stratégie qui a été adoptée est la suivante : 
+si les pics comparés sont chevauchants, ils sont alors marqués comme communs aux deux conditions et le chevauchement le plus grand sera retenu.
+Si les pics comparés ne sont présents que dans l'un des réplicats (ils sont uniques), les coordonnées de ce pics seront retenues.
+ \newline Une fois les pics entre les réplicats comparés et mis en communs, les pics des conditions contrôles et traitées sont ensuite comparés avec le même script.
+Ainsi, sont extraits les  pics uniques à la condition TALE-HD ,  les pics uniques à la condition TALE-HD-mutée et les pics communs aux deux conditions.
+
+	
+
+      
+      \subsection{Annotation des pics sur les gènes}
+      Une adptation d'un script fourni par Evelyne a permis d'annoter les pics avec une annotation de gènes. Cette annotation a été récupérée sur Ensembl/Biomart au format gff.
+      Ainsi, on détermine si un pic est inclus dans un gène, si un gène est inclus dans un pic ou s'il y a un chevauchement entre un pic et un gène.
+      Enfin, les pics peuvent être annotés à une distance prédéterminée (ici 1 Kb).
+      Pour les gènes détectés, les voies métaboliques associées ont été explorée avec DAVID \cite{GO}.
+      
+      \subsection{Analyse des régions uniques sur génome découpé en fenêtres}
+      L'outil  bedtools makewindows \cite{bedtools} a permis de découper le génome en 50 000 fenêtres de 55 kb (options -g -w 55000).
+      Ensuite, le nombre de reads par fenêtres a été compté en utilisant les bedtools coverage.
+      Enfin, une ACP a été tracé pour expliquer la variabilité entre tous les échantillons.
+
+    \section{Analyses spécifiques des éléments répétées }
+    \subsection{Alignement contre une base de données d'éléments répétés (RepBase)}
+ 
+    Afin d'avoir une estimation plus proche de la réalité du nombre de reads qui s'alignent sur les répétitions, les séquences ont été mappées contre les éléments répétés de la classe rodrep rodent de la base de données RepBase \cite{repbase}.
+    \newline Les séquences ont été alignées en utilisant bowtie2 \cite{bowtie}(version 2.2.4) en single end sur les mates R1  préalablement trimé pour obtenir des fragments de 35 nt. Bowtie2 a été lancé en very-sensitive (pour suivre Ostromyshenskii et al, 2018).
+    En sortie de mapping, le nombre de reads s'alignant sur chacune des répétitions a été calculé.
+    
+    \subsection{Utilisation de RepEnrich2}
+    L'outil RepEnrich2 \cite{pmid25012247} a été utilisé pour quantifier le nombre de reads qui s'alignent sur chacune des répétitions. Pour cela, le protocole disponible sur github \cite{protocole} a été appliqué.
+    %(\cite{protocole}) a été suivi. : 
+    Dans cet outil, les reads sont dans un premier temps alignés de manière unique avec bowtie2 sur le génome mm10. Les reads uniques et mutliples sont séparés et les reads multiples sont assignés à un fichier FASTQ.
+    En paralèle, l'annotation des répétitions est réalisée à partir des annotations d'éléments répétés de repeatMasker (Repeatmasker.org). 
+    Le chevauchement des reads uniques avec des éléments répétés est testé. Les reads multiples sont alignés contre l'assemblage des répétitions en utilisant bowtie2.
+    Enfin, le nombre de reads mappant contre les familles d'éléments repétés ou les classes d'éléments répétés est déterminé.
+ %   \newline Les comptages générés par RepEnrich2 ont été analysés par analyse différentielle en utilisant le package R DESeq2 \cite{deseq} (normalise et recherche des répétitions différentiellement exprimées en se basant sur un modèle de binomiale négative)
+    
+    \section{Visualisation du signal}
+      \subsection{Normalisation du signal}      
+      Le signal de chaque librairie a été normalisé en utilisant bamCompare de l'outil deeptools \cite{deeptools} (version 3.0.2). 
+      Les librairies ont été normalisées de la même manière avec l'option ``substract bins10''.
+    \newline
+      Ainsi, un signal  plus important dans l'Ip que dans l'Input se traduira par un résultat positif et inversement un signal plus important dans l'input que dans l'ip par un résultat négatif.
+      Pour utiliser bamCompare, il faut fournir les fichiers de mapping ainsi que l'indexation de ces fichiers. L'indexation a été réalisée par les samtools.
+    \subsection{IGV}
+      Les différents alignements et pics obtenus ont été visualisé avec le logiciel IGV (Integrative Genomics Viewer \cite{IGV} : version 2.4.8). Dans le manuscript, le signal de chaque librairie est représenté avec en dessous les pics correspondants. Les pics sont shématisés par des rectangles.
+       L'annotation des répétitions a été obtenue sur l'UCSC (Clade mamals, genome mouse, assembly mm10, group Genes and Genes prediction, track UCSC genes et table kgXref) au format gff et a été utilisée pour visualiser les reads sur les éléments répétés. 
+      Pour la suite du manuscrit, le code couleur est le suivant : bleu pour les librairies contrôles (HDm1 et HDm2), vert pour la librairie publique, rouge pour HD2 et orange pour HD1.
+      \subsection{Circos}
+      La représentation en circos \cite{circos} (version 0.69-6) a été utilisée pour apporter une vue d'ensemble de la répartition du signal sur le génome.
+      
+     
+
+
+     \section{ACP}
+     
+     Pour décrire les jeux de données des Analyses en composantes principales ont été réalisées grâce au package FactoMineR \cite{ACParticle} avec l'option ``scale.unit=TRUE'' pour centrer et réduire.
+
+    \section{Calcul du LogFC}
+    Des Log2Fc ont été calculés. Seule la librairie HD2 pour la condition traitée et les librairies HDm1 et HDm2 pour la condition contrôle ont été prises en compte pour le calcul :
+          $log2((\frac{traitérep1}{Taille librairie}$ / 0.5* ($\frac{controlerep1}{Taille librairie}$+$\frac{controlerep2}{Taille librairie}$)) 
+
+
+\newpage
+\chapter*{Résultats}
+\setcounter{section}{0}
+\addcontentsline{toc}{chapter}{Résultats}
+   
+
+    \section{Développement d'un protocole d'analyse pour la marque H3K9me3}
+        
+   L'analyse classique des données de ChIP-Seq consiste à vérifier la qualité des librairies, localiser les reads sur un génome de référence (étape de mapping avec bowtie2), détecter les régions statistiquement enrichies par l'expérience (étape de détection de pics) et à les analyser.
+   Cette analyse a été réalisée. A l'issue de l'analyse qualité, les séquences ont été ``trimmées''  pour en améliorer la qualité globale.
+   
+   Ce protocole standard pose problème dès qu'il s'agit d'analyser la présence d'une marque chromatinienne spécifique de l'hétérochromatine qui est par conséquent essentiellement présente sur des éléments répétés.
+   Ainsi, nous avons imaginé un protocole permettant de séparer l'analyse des régions uniques (en particulier sur les gènes) du génome et l'analyse des régions répétées (centromères, télomères et éléments transposables principalement).
+  
+   Pour l'étude des régions uniques, le retrait des reads concordants, des biais de PCR et des hits multiples a permis de supprimer la redondance de nos librairies. La détection de pics a ensuite été réalisée sur les reads uniques en utilisant l'input comme donnée de normalisation.
+  
+  Pour l'étude des régions répétées, deux stratégies ont été testées en parallèle.
+  \newline D'abord, un alignement des reads sur une base de donnée d'éléments répétés (repBase) dans le but de déterminer les répétitions les plus enrichies.
+  Ensuite, un outil dédiée (RepEnrich2) à l'analyse des éléments répétés à été utilisé pour quantifier le nombre de reads sur chacun des éléments répétés.
+
+\begin{figure}[!ht]
+
+\includegraphics[scale=0.65]{pipeline.png}
+\scaption{ Mise en place du protocole d'analyse. A gauche : Focus sur les régions uniques. A droite : Focus sur le signal global. Au centre : analyse du signal global sur le génome de référence.}
+\label{Résultats expérimentaux} 
+\end{figure}
+%\begin{landscape}
+%\includegraphics[scale=0.65]{pipeline.png}
+%\end{landscape}
+\newpage
+    \section{Contrôle qualité et choix du génome de référence}\label{Test}
+    Le nombre de lectures varie entre 2x30 et 2x55 millions pour nos librairies et entre 2x40 et 2x50 millions pour les librairies publiques (Table \ref{tab1}). 
+ \begin{center}
+ \begin{tabular}{|p{4cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{2cm}|p{2cm}|}
+\hline
+  & Input &HD1 & HD2 &  HDm1 & HDm2 & Input publique & IP publique\\
+\hline
+Nombre de reads par mates (millions) & 52 &  29 & 55 & 33 & 38 & 55 & 55  \\
+\hline
+\end{tabular}
+\captionof{table}{Table du nombre de lectures obtenues pour chacune des librairies (en millions)}
+\label{tab1}
+\end{center}
+
+La qualité des séquences est évaluée par le score phred qui est un score relié de manière logarithmique à la probabilité d'erreur d'identification d'une base. Il varie entre 1 et 40. 
+ Dans l'ensemble, le score par nucléotides des librairies est autour de 40.  Seul le tout début des séquences est de moins bonne qualité (les cinq premières paires de bases pour nos librairies et les 10 premières pour les librairies publiques ont un score phred autour de 32 (Figure \ref{fastqc}). Afin d'améliorer la qualité globale, ces bases ont été retirées.
+    
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.6]{fastqc.png}
+\caption{Exemple d'une analyse qualité obtenue avec FastQC pour la librairie HD1-mate1. Les 5 premières paires de bases ont ensuite été retirées pour la suite de l'analyse. Toutes les librairies ont le même comportement.}
+\label{fastqc}
+\end{figure}
+
+    Comme il n’existe pas de  génome de référence pour notre lignée de souris NIH-3T3, il a fallu déterminer parmi l’ensemble des génomes de référence de souris possédant une annotation  dans Ensembl celui qui était le plus proche de notre lignée. 
+    Pour cela, l’input de nos données a été mappé contre les génomes accessibles et celui qui avait le meilleur pourcentage d’alignement a été conservé. 
+    Les pourcentages de mapping pour les différents génomes sont similaires exceptés pour deux d'entre eux qui sont autour de 15\% (wsbeij et 129s1svimj).
+    \newline Le meilleur pourcentage de mapping (98.38 \%) a été obtenu pour le génome mm10 qui a donc été selectionné pour la suite des analyses.
+
+    \section{Perte de signal au péricentromère}
+    Rappelons que l'expérience réalisée consiste déméthyler H3k9me3 en H3K9me sur les satellites majeurs pour observer l'impact que cela pourrait avoir sur le génome. \\
+    Afin de valider l'expérience, j'ai sélectionné, en sortie de mapping, un satellite majeur de 30 kb sur le chromosome 9 aux positions 3000 à 3030. 
+    Le signal Ip-Input normalisé par bamCompare a été visualisé avec IGV (Figure \ref{IGV}).
+    
+    \bigskip
+    Les librairies contrôles, en bleu, ont un comportement similaire : le terme de ``réplicat'' semble donc approprié. Ce comportement est semblable à celui de la librairie publique (en vert). C'est un résultat que l'on attendait car il permet de confirmer la protéine TALE seule ne modifie pas la présence de la marque au centromère. 
+    \newline Les librairies traitées, en rouge, semblent également avoir un comportement similaire. 
+    De plus,  on observe une diminution du signal par rapport à celui du contrôle. Ce résultat sous-tend l'idée que l'expérience, en enlevant la méthylation de H3K9 sur les satellites majeurs, a bien fonctionné. Remarquons ici que le signal est certe fortement diminué dans les réplicats traités, mais il n'en ai pas moins supprimé.
+    Afin d'estimer la perte de reads sur cette région, un comptage a été fait sur les satellites majeurs et a montré que l'on a 5 fois moins de signal dans les librairies traitées que dans les librairies contrôles.
+      
+   \bigskip
+   Il semble donc que l'expérience ait bien fonctionné : l'introduction de la TALE-HD a bien déméthylé la marque au niveau des satellites majeurs et les réplicats semblent se comporter comme des réplicats.
+   \begin{figure}[!h]
+   \centering
+    \includegraphics[scale=0.7]{GSAT.png}
+    \scaption{ Capture IGV d'un satellite majeur de 30 KB sur le chromosome 9. Le signal normalisé par l'input ainsi que les pics associés sont représentés pour chacune des librairies : en rouge les librairies traités par la TALE-HD, en bleu les librairies contrôles et en vert la librairie publique.
+    L'échelle est fixée de 0 à 1000}
+  \label{IGV}
+  \end{figure}
+
+
+    \section{Redistribution modérée sur les gènes et en intergénique}
+   
+   Les reads uniques ont été isolés pour chacune des librairies. Ils représentent entre 77 et 87 \% de la taille des librairies (Table \ref{tab2}).
+    \begin{table}[h]
+  \begin{tabular}{|p{3cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+  & HD1 & \% HD2 & \% HDm1&  \% HDm2 & Input\\
+\hline
+Nombre de reads initiaux & 29917010 &  55242254 & 33530582 & 38385939 & 52068315  \\
+\hline
+Nombre de reads après mapping & 55242254 &  5 & 20 & 1 & 79  \\
+\hline
+\% de reads retirés après appariement& 33530582 & 5 & 20 & 1 & 77  \\
+\hline
+HDm2 & 38385939 & 5 & 20 & 1 & 78  \\
+\hline
+\end{tabular}
+
+\captionof{table}{L'effet des filtres sur la suppression des hits mutliples : Après chaque filtre appliqué, le nombre de reads a été calculé (en 2x millions de reads).}
+\label{tab2}
+\end{table}
+\\
+   On souhaite dans un premier temps savoir si ces reads se répartissent tous de la même manière sur le génome.
+   En positionnant les différents chromosomes du génome mm10 de manière circulaire, le circos (figure \ref{circos}) permet de visualiser pour chaque librairie le signal normalisé IP-Input par bamCompare.
+   On peut ainsi remarquer que le signal est présent sur tous les chromosomes pour chacun des échantillons.
+   Cependant, alors que la notion de réplicat apparait très claire pour les deux libraires contrôles (en bleu), elle l'est beacoup moins pour les librairies traitées (en orange pour HD1 et en rouge pour HD2). 
+   En effet, il semble que HD1 ressemble aux deux librairies contrôles. 
+   
+     
+    \begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.2]{circos.png}
+    \scaption{Répartition du signal normalisé pour les différentes librairies après filtre de la redondance : le génome de référence mm10 est représenté par le cercle le plus à l'extérieur. Les autres cercles représentent les signaux normalisés des librairies. Les librairies traitées sont en orange pour HD1 et en rouge pour HD2, les librairies contrôles sont bleues.
+    L'échelle est fixée arbitrairement à [12:100]}
+    \label{circos}
+    \end{figure}
+  
+
+   Pour confirmer le comportement des librairies traitées, une analyse sur le génome découpé en fenêtres a été réalisée.
+   Pour cela, le génome de 2 730 871 774 bp a été découpé en 50 000 fenêtres de 55 kb puis le nombre de reads par fenêtres a été compté. 
+   Une ACP (analyse en composant principale, Figure \ref{ACP1}) permet d'expliquer la variabilité globale entre les différentes librairies.
+   Les dimensions 1 et 2 expliquent le mieux cette variabilité. On voit que 97\% de la variabilité extirpe l'une des deux librairies traitées (la librairie 18) et que la deuxième (la librairie 17) se comporte en moyenne comme un contrôle.
+   \newline Ce résultat confirme ce que l'on avait commencé à voir en figure \ref{circos}: les réplicats traités ne sont pas des réplicats et l'un d'eux se comporte comme un contrôle.
+   \newline  On a donc décidé pour la suite de l'analyse de ne conserver que la librairie 18 et les deux réplicats contrôles.
+   \begin{figure}[!h]
+    \centering
+    \includegraphics[scale=0.4]{ACP_uniques.png}
+    \scaption{ACP réalisée à partir du nombre de reads comptés sur les fenêtres du génomes pour les différents échantillons. Les dimensions 1 et 2 sont celles qui expliquent le mieux la variabilité des librairies.}
+    \label{ACP1}
+   \end{figure}
+   \newpage
+   Pour la suite de l'analyse, les pics des réplicats contrôles ont été mis en commun et comparés aux pics de la librairie HD2 (Figure \ref{Venny}). Les pics de HD1 ont été calculés mais sont pour le moment non étudiés.
+
+   \bigskip
+On a dans un premier temps regardé la répartition des pics autour des sites d'initiation de la transcription (TSS) : pour chaque TSS on regarde 5 kb en amont et 5 kb en aval et on compte le nombre de pics présents en comptant 1 sur toute la longueur du pic (Figure \ref{TSS}). 
+Pour les pics uniques à la condition contrôle, on voit que peu d'entre eux sont dans la région du TSS. Les pics uniques à la condition traitée sont un peu plus nombreux mais ils sont peu nombreux dans la région du TSS.
+La majorité des pics communs aux deux conditions sont situés près des TSS.
+\begin{figure}[!h]
+\centering
+\includegraphics [scale=0.4]{TSS.png}
+\scaption{Distribution des pics 5 Kb amont et 5 Kb aval des TSS. Les TSS sont positionner en 0}
+\label{TSS}
+\end{figure}  
+   \newline Dans un second temps, la comparaison des pics permet de distinguer à la fois les pics uniques à la condition TALE-HD, les pics uniques à la condition contrôle et les pics communs aux deux conditions.
+   Les pics uniques à la condition traitée correspondent à un gain de marquage dans la condition HD par rapport au contrôle alors que les pics uniques à la condition contrôle correspondent à une perte de signal dans la condition TALE-HD par rapport au contrôle.
+   Les pics communs sont des régions où le signal est présent dans les deux conditions.
+    \newline
+    En comparant ces pics (Figure \ref{Venny}), on remarque qu'ils sont beaucoup plus nombreux dans la condition traitée que dans la condition contrôle. De plus, les pics de la condition traitée représentent 0.018\% de la taille du génome (soit 489 997 paires de bases) et les pics de la condition contrôle représentent 0.012\% de la taille du génome (soit 324 696 pb).
+    Ainsi, même si ces pics couvrent un faible pourcentage du génome, il y a 1,5 fois plus de couverture de la marque dans la condition traitée que dans la condition contrôle. 
+    \newline Ce premier résultat suggère donc qu'il y a une redistribution dans les régions uniques des bras chromosomiques.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.5]{Venny.png}
+\scaption{Venn diagramme représentant le nombre de pics obtenus dans les conditions TALE-HD et TALE-HD-mutée. L'annotation de ces pics sur des gènes a été réalisée. La proportion de pics sur les régions géniques et intergéniques est représentée par les piechart pour chaque condition}
+\label{Venny}
+\end{figure}
+
+Maintenant que l'on a déterminé qu'une redistribution dans les régions uniques était peut-être possible, on souhaite savoir si cette redistribution est essentiellement génique, intergénique ou bien les deux. Pour répondre à cette question, les pics ont été annotés avec une annotation de gènes.
+ Dans les conditions traitée et contrôle, la moitié des pics est annotée sur des gènes (Figure \ref{Venny}).
+On parle ici en terme de pics, ce qui n'a pas énormément de sens puisque plusieurs pics peuvent être situés sur un même gène.
+C'est pour cette raison que l'on a compté le nombre de gènes sur lesquels le signal est présent (Figure \ref{genes}). 288 gènes sont alors identifiés.
+\newline Parmi ces gènes, on peut distinguer quatre cas de figure. 
+On appelle  ``gain de marquage'' un gène marqué dans la condition traitée qui ne l'était pas dans la condition contrôle.
+La ``perte de marquage'' est le cas où le gène est marqué dans la condition contrôle mais ne l'est plus dans la condition traitée.
+La ``modification du signal au sein d'un gène'' correspond aux gènes qui sont marqués dans les deux conditions mais pas au même endroit.
+Quand un gène est marqué dans les deux conditions et au même endroit, on dit qu'il n'y a ``pas de redistribution'' ; il peut juste y avoir une modification de l'intensité du marquage.
+\newline La catégorie dans laquelle le plus de gènes a été identifié est celle du ``Gain de marquage''. 
+Il semble donc qu'il y ait une petite redistribution du signal sur les gènes.
+Toutefois aucune voie métabolique ni fonctions (termes GO) n'ont été identifiées pour ces gènes comme enrichies.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[scale=0.3]{explicationBis.png}
+%\includegraphics[scale=0.7]{explication.png}
+%\includegraphics[scale=0.5]{Genes.png}
+\scaption{Tableau représentant les différents cas de gènes identifiés lors de l'annotation de pics par une annotation de gènes. Le nombre de gènes appartenant aux différentes classes du tableau figure en dernière colonne}
+\label{genes}
+\end{figure}
+
+Les figures \ref{Gain}-\ref{perte}-\ref{nope} montrent des exemples de ces cas ( =>\textcolor{red}{Figures non définitives}). Pour les régions identifiées comme ``gain de marquage'' on voit bien qu'il y a plus de signal sur les librairies traitées que sur les contrôles.
+Cela est par contre beacoup moins clair pour les régions ayant une ``perte de signal'' : les flèches vertes sont des exemples de régions où on a bien une perte de signal en condition traitée mais il y a aussi beaucoup de régions identifiées dans cette catégorie qui n'ont pas de modification du signal.
+Les régions neutres identifiées, quand à elles, sont cohérentes.
+\begin{flushleft}
+\begin{figure}[!h]
+\includegraphics[scale=0.45]{Gain}
+\scaption{Exemple de gènes possédant un gain de marquage}
+\label{Gain}
+\end{figure}
+
+\begin{figure}[!h]
+\includegraphics[scale=0.45]{Perte}
+\scaption{Exemple de gènes possédant une perte de marquage}
+\label{perte}
+\end{figure}
+
+\begin{figure}[!h]
+\includegraphics[scale=0.45]{Nope}
+\scaption{Régions sans modification du signal}
+\label{nope}
+\end{figure}
+
+\end{flushleft}
+
+
+\bigskip
+Ainsi, le traitement à l'HD a induit une redistribution modérée de la marque H3K9me3 sur les régions uniques du génome. La moitié de cette redistribution a lieu sur des gènes (l'autre moitié étant intergénique). Toutefois, aucune voie métabolique n'a été identifiée.
+
+\bigskip
+    \section{Déméthylation globale des éléments répétés et reméthylation de certains LINE et LTR}
+ Le problème de l'analyse globale sur génome de référence est l'assemblage de mm10 qui contient peu de séquences péricentromériques, pas de télomères, pas de centromères et peu de séquences répétées.
+   
+   \bigskip
+    Pour essayer d'estimer la proportion de reads sur les éléments répétés, la première stratégie a été d'aligner les reads sur une base de données d'éléments répétés (RepBase \cite{repbase}). 
+    La grande majorité des répétitions y sont présentes sous forme de concensus monomériques.
+    Ainsi, les reads ne peuvent pas y être alignés en paired-end, au risque de perdre de l'information pour les répétitions en tandem. 
+    En effet, les répétitions qui chevauchent à la fois un gène et un élément répété ainsi que les répétitions en tandem n'y seraient pas alignées. 
+    C'est pour cela, que seul un mate (R1) du paired-end a été aligné et découpé pour atteindre une taille de 33 bp (l'alignement du mate R2 contre RepBase a également été réalisé pour confirmer ces résultats).
+   \newline Une fois l'alignement terminé, le nombre de reads sur chacune des répétitions a été compté.
+   \newline En parallèle l'outil RepEnrich2 \cite{pmid25012247} a été utilisé.  Cet outil utilise le génome masqué de repeatMasker pour estimer le nombre de reads sur les répétitions.
+   
+    \bigskip
+    Pour interpréter  à la fois la sortie de RepBase et celle de RepEnrich2, des ACP ont été réalisées (Figure \ref{ACP}).  
+    Ici, pour les deux stratégies, ce sont les dimensions 1 et 2 qui expliquent le mieux la variabilité.
+    Que ce soit avec RepBase ou avec RepEnrich2, la deuxième dimension semble indiquer que entre 62\% (pour RepBase) et 70 \% (pour RepEnrich) de  la variabilité extirpe la librairie HD2.  
+    Autrement dit, il semble que le réplicat traité HD1 se comporte comme un contrôle et que HD2 se comporte de manière très différente de tous les échantillons.
+    Ce que l'on avait observé sur les régions uniques l'est donc également sur les régions répétées.
+    Par conséquent, le réplicat HD1 a été écarté pour la suite des analyses.
+    \newline  Les comptages entre les réplicats contrôles ont été normalisés puis mis en communs.
+   
+\begin{figure}[!h]
+
+\includegraphics [scale=0.33]{RepBase_PCA.png}A
+\includegraphics [scale=0.33]{RepEnrich_PCA.png}B
+\scaption{A : ACP réalisée à partir des comptages de RepBase. B : ACP obtenue à partir des comptages générés par RepEnrich2 sur les différents éléments répétés. Les librairies traitées sont représentées en rouge et les libraries contrôles en bleu.}
+\label{ACP}
+\end{figure}
+ 
+\newpage On cherche à déterminer les répétitions qui ont significativement plus de comptages dans la condition traitée par rapport à la contrôle ainsi que les répétitions qui ont significativement moins de comptages dans la condition traitée par rapport à la contrôle. 
+Les Maplots (Figure \ref{Maplot}) permettent de répondre à cette question.
+\newline Chaque point correspond à une répétition. Plus un point sera à droite du graphique, plus le nombre de reads présents sur la répétition sera important et inversement. Plus un point sera en haut du graphique, plus la répétition sera sur-exprimée dans la condition TALE-HD par rapport à la condition contrôle et inversement.
+    On s'intéresse donc aux répétitions qui s'écartent du nuage de points. 
+  \newline    
+    Le nuage des points obtenu avec RepBase est plus éclaté qu'avec RepEnrich2 : sûrement du au fait qu'avec RepBase on aligne que des petits fragments.
+     \newline Les points qui nous intérèssent le plus ici sont représentés en rouge pour les gains de méthylation et en bleu pour les perte de méthylation.
+   
+  \bigskip Dans les deux cas, les satellites majeurs sont les répétitions qui ont le plus de comptages (GSAT\_MM sur les graphiques). Leur logFC très négatif traduit bien une perte forte du signal  (cinq fois en moyenne) dans la condition TALE-HD par rapport au contrôle.
+ \newline 
+     De la même manière, les satellites mineurs (marqués SATMIN et SYNREP\_MM) font partis des répétitions possédant le plus de comptages. La valeur du LogFC (-1.3) semble également indiquer qu'il y a une perte de méthylation dans la condition traitée par rapport à la condition contrôle.
+    
+    \bigskip Les éléments significativement enrichis dans la condition traitée par rapport au contrôle (points rouges) que l'on identifie sont similaires avec les deux méthodes de comptages. En effet, l'élément B2 apparait dans les deux cas.
+    \newline Les éléments répétés ayant significativement une perte de méthylation dans la condition traités par rapport à la condition contrôle sont les mêmes identifiés avec les deux méthodes : ce sont majoritairement des LinesL1 et des éléments B1.
+    
+    
+ %=>\textcolor{red}{Figures non définitives}
+
+\begin{figure}[!h]
+\includegraphics [scale=0.3]{Maplot.png}A
+\includegraphics [scale=0.3]{MaplotRepBase.png}B
+\scaption{Maplot  pour les comptages de RepEnrich2: pour chaque échantillons, les comptages ont été normalisés par la taille de leur librairie. Ensuite, les comptages sur les répétitions entre deux réplicats sont ajoutés. Enfin, le log FC du rapport traité sur contrôle est calculé ainsi que la moyenne de tous les comptages}
+\label{Maplot}
+\end{figure}
+
+\bigskip
+Ainsi, on observe une petite redistribution de la marque dans certains éléments répétés comme des LINE, des LTR. Toutefois, il semble que la plupart des éléments répétés ont une perte de méthylation dans les réplicats traités par rapport au contrôle.
+
+\newpage
+\chapter*{Discussion}
+\setcounter{section}{0}
+\addcontentsline{toc}{chapter}{Discussion}
+
+
+ 
+ \section {Comportement des réplicats}
+
+Lors de l'analyse des régions uniques et des régions répétées, on s'était rendu compte qu'une des deux librairies traitées se comportait comme un contrôle.  Ces résultats sous-tendent l'idée que l'expérience n'aurait fonctionnée que pour un des deux réplicats.
+Toutefois, on avait également remarqué, lors de la validation expérimentale, qu'il y avait bien une perte de signal sur les deux librairies traitées et que ce comportement était très différent des librairies contrôles.
+La première explication que l'on peut donner est qu'il n'y a pas assez de profondeur de séquençage dans cette librairie pour voir quelque chose. En effet, cette librairie est celle qui possède le moins de reads (2x 29 millions).   nombre minimal de reads requis pour obtenir des résultats statistiquement significatifs ?
+ \newline La deuxième explication que l'on peut donner est qu'il s'agit bien d'une réalité biologique. En effet, il est possible que la redistribution soit aléatoire et que selon les cas on obersve plus ou moins de la redistribution ou alors de la redistribution à des endroits différents. Il faudrait au moins un troisième réplicat pour pouvoir le confirmer.
+\newline Enfin cela pourrait également venir de l'intégration de la TALE dans les cellules : la TALE est intégrée par transfection. Par conséquent, toutes les cellules n'intègre pas la même quantitié de TALE  ce qui pourrait expliquer pourquoi les deux échantillons traités ne sont pas identiques mais  n'explique pas pourquoi on avait une perte du signal dans les GSAT...
+
+
+ 
+ \section {Choix des paramètres de mapping}
+ 
+ L'alignement sur le génome de référence a été réalisé en autorisant au plus 2 hits multiples. Autrement dit, si un read s'aligne sur plus de deux positions sur le génome de référence, on ne retient que les deux meilleurs.
+ Cet alignement ne pose pas de problème pour tous les reads uniques mais en devient un pour tous les reads qui sont des répétitions en tandem. L'idéal aurait été d'utiliser l'option "-all" de bowtie afin d'aligner les reads à toutes leur position possible. Cette option, en terme de temps de calcul et de stockage n'était pas du tout envisageable (1\% du fichier ecrit en 4 jours). C'est pour cette raison que nous avons décidé de garder au plus deux hits multiples.
+ 
+ \section{Supression des biais de PCR}
+ Pour ne garder que les reads uniques, plusieurs filtres ont été appliqués et en particulier la suppression des biais de PCR avec l'option "rmdup".
+ rmdup qui ne gère pas bien les reads répétés en paired-end => on se retrouve avec des mates tout seul => représente 1 pourcent de la librarie
+  
+ \section{Choix des paramètres et des algorithmes pour la détection de pics}
+ => a voir si on garde / selon les nouveaux résultats
+ 
+ \bigskip
+ Pour la détection des pics, MACS2 avec les paramètres par défaut a été utilisé.  Nous nous sommes rendus compte que sur de nombreuses régions, des pics n'étaient pas détectés et que les pics détectés n'étaient pas forcément bien placés. 
+ C'est pour cela que plusieurs paramètres avec MACS 2 ont été testés (Figure \ref{MacsTests}) => les détailler ?
+ Parmi les paramètres testés, on trouve la taille de fenêtres, qvalues, nomodel, nolambda.
+
+ \bigskip
+D'autres algorithmes ont également été testés : SICER est censé donner de meilleurs résultats pour les marques hétérochromatiniennes "broad" mais n'est pas développé pour du paired-end. 
+C'est pour cette raison que nous avons essayé d'utiliser "epic" qui est une réimplémentation de SICER pour faire du paired-end. Mais n'a pour le moment pas donné de résultats concluants.
+
+\section{Redistribution sur les éléments répétés}
+%Discuter de la comparaison des deux méthodes de comptages => retrouve-t-on les mêmes éléments répétés dans les deux bases de données ?  Les répétitions sont-elles inclusives/exclusives ?
+
+ 
+\newpage
+\chapter*{Conclusion et perspectives}
+
+\addcontentsline{toc}{chapter}{Conclusion}
+\newpage
+
+\begin{appendices}
+\newpage
+
+
+
+Les différents paramètres qui ont été testés => tableau
+
+\newpage
+
+
+
+
+
+
+\bigskip
+
+\begin{table}[ht]
+\centering
+ \begin{tabular}{|p{1.5cm}|p{2cm}|p{2cm}|p{1.5cm}|p{2cm}|p{1cm}|p{2cm}|p{1.5cm}|}
+
+\hline
+  & Librairie TALE-HD rep1 & Librairie TALE-HD rep2 & Librairie TALE-HD-mutée rep1&  Librairie TALE-HD-mutée rep2 &  input & Librairie publique ip & Librairie publique input \\
+\hline
+chrs 974065 & 1750736 &  1260841 & 1397532 & 3.64 & 2.58 & 2.86 & 2.39  \\
+\hline
+chrs 2 & 7.96 &  7.57 & 9.09 & 8.58 & 7.88 & 70.4 & 5.92   \\
+\hline
+chrs 9 & 4.21 & 4.08 & 4.93 & 4.67 & 4.16 & 2.72 & 2.29 \\
+\hline
+Total & 16 & 15 & 18 & 17 & 15.8 & 13.18 & 11.10  \\
+\hline
+\end{tabular}
+\captionof{table}{Nombre de reads s'alignant sur les satellites majeurs : Ici, le pourcentage est reporté pour les chromosomes ayant le plus de reads ainsi que le nombre total de reads s'alignant sur les satellites majeurs.
+}
+\label{tab3}
+\end{table}
+
+\bigskip
+
+\end{appendices}
+\bibliographystyle{apalike} 
+\bibliography{biblio}  
+
+
+\end{document}

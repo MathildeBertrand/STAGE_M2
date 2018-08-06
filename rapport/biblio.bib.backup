@@ -1,0 +1,116 @@
+%https://www.bioinformatics.org/texmed/
+
+% 26675384 : biblio H3k9me3
+@Article{pmid26675384,
+   Author="Becker, J. S.  and Nicetto, D.  and Zaret, K. S. ",
+   Title="{{H}3{K}9me3-{D}ependent {H}eterochromatin: {B}arrier to {C}ell {F}ate {C}hanges}",
+   Journal="Trends Genet.",
+   Year="2016",
+   Volume="32",
+   Number="1",
+   Pages="29--41",
+   Month="Jan"
+}
+
+
+% 19997069 : Technologies de sequencage
+@Article{pmid19997069,
+   Author="Metzker, M. L. ",
+   Title="{{S}equencing technologies - the next generation}",
+   Journal="Nat. Rev. Genet.",
+   Year="2010",
+   Volume="11",
+   Number="1",
+   Pages="31--46",
+   Month="Jan"
+}
+
+% 21934668 : ChipSeq principe
+@Article{pmid21934668,
+   Author="Kidder, B. L.  and Hu, G.  and Zhao, K. ",
+   Title="{{C}h{I}{P}-{S}eq: technical considerations for obtaining high-quality data}",
+   Journal="Nat. Immunol.",
+   Year="2011",
+   Volume="12",
+   Number="10",
+   Pages="918--922",
+   Month="Sep"
+}
+
+% 19736561 : ChIp-Seq :  principe et pipeline de base
+@Article{pmid19736561,
+   Author="Park, P. J. ",
+   Title="{{C}h{I}{P}-seq: advantages and challenges of a maturing technology}",
+   Journal="Nat. Rev. Genet.",
+   Year="2009",
+   Volume="10",
+   Number="10",
+   Pages="669--680",
+   Month="Oct"
+}
+
+% 21633945 : protocol MACS
+@Article{pmid21633945,
+   Author="Feng, J.  and Liu, T.  and Zhang, Y. ",
+   Title="{{U}sing {M}{A}{C}{S} to identify peaks from {C}h{I}{P}-{S}eq data}",
+   Journal="Curr Protoc Bioinformatics",
+   Year="2011",
+   Volume="Chapter 2",
+   Pages="Unit 2.14",
+   Month="Jun"
+}
+
+% 28250819 : exemple de Chip seq sur une marque dhistone
+@Article{pmid28250819,
+   Author="Kidder, B. L.  and Hu, G.  and Cui, K.  and Zhao, K. ",
+   Title="{{S}{M}{Y}{D}5 regulates {H}4{K}20me3-marked heterochromatin to safeguard {E}{S} cell self-renewal and prevent spurious differentiation}",
+   Journal="Epigenetics Chromatin",
+   Year="2017",
+   Volume="10",
+   Pages="8"
+}
+
+% 25012247 :publi RepEnrich
+@Article{pmid25012247,
+   Author="Criscione, S. W.  and Zhang, Y.  and Thompson, W.  and Sedivy, J. M.  and Neretti, N. ",
+   Title="{{T}ranscriptional landscape of repetitive elements in normal and cancer human cells}",
+   Journal="BMC Genomics",
+   Year="2014",
+   Volume="15",
+   Pages="583",
+   Month="Jul"
+}
+
+% RepEnrich2 protocole
+@misc {protocole,
+    Author="Nicholas Skvir",
+    Title="RepEnrich2 is an updated method to estimate repetitive element enrichment using high-throughput sequencing data.",
+    Month="Oct",
+    Year="2017",
+    Note="https://github.com/nskvir/RepEnrich2"
+}
+
+% 22703977 : Biblio elements transposables
+@Article{transposables,
+   Author="Nellaker, C.  and Keane, T. M.  and Yalcin, B.  and Wong, K.  and Agam, A.  and Belgard, T. G.  and Flint, J.  and Adams, D. J.  and Frankel, W. N.  and Ponting, C. P. ",
+   Title="{{T}he genomic landscape shaped by selection on transposable elements across 18 mouse strains}",
+   Journal="Genome Biol.",
+   Year="2012",
+   Volume="13",
+   Number="6",
+   Pages="R45",
+   Month="Jun"
+}
+
+% 23945931 : Biblio elements transposable LINE un tiers genome de la souris
+@Article{pmid23945931,
+   Author="Chen, C.  and Zhang, S.  and Zhang, X. S. ",
+   Title="{{D}iscovery of cell-type specific regulatory elements in the human genome using differential chromatin modification analysis}",
+   Journal="Nucleic Acids Res.",
+   Year="2013",
+   Volume="41",
+   Number="20",
+   Pages="9230--9242",
+   Month="Nov"
+}
+
