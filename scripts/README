@@ -1,0 +1,14 @@
+
+#IGV.sh : permet de modifier les fichiers bam pour les visualiser sous IGV (IP-Input et RPKM)
+#main.sh : permet de lancer les analyses globale sur le genome de reference, sur les régions uniques ou sur les éléments reprétés avec RepEnrich2
+
+#Le dossier regions_uniques : 
+
+Contient les scripts qui ont été utilisés pour la mise en place du protocole sur les regions uniques
+
+#Le dossier regions_repetees : 
+
+-repEnrich.sh : automatisation des etapes pour lancer le programme RepEnrich2
+Ce programme est disponible dans le dossier Tools
+-repEnrich.R : les différentes analyses de la sortie de RepEnrich2
+-repBase.sh : automatisation des etapes pour lancer les analyses sur RepBase
