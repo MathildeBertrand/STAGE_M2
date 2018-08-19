@@ -101,7 +101,6 @@ done
 
 #Detection de pics avec EPIC : 
 
-
 sample_list=(A878C17 A878C18 A878C19 A878C20)
 for i in ${sample_list[*]};do
 echo Debut EPIC pour ${i}
@@ -112,6 +111,8 @@ cd ..
 done
 
 #Rangements des fichiers de la detection de pics EPIC
+mv *rmdup_paired_uniques_sortChr.bedpe Input/
+mv *bis_unique_W20k.txt output_EPIC/
 
 
 
