@@ -1,6 +1,8 @@
+############################################################################################################
+#Juillet 2018
 #Tracer des Manhnattan plot a partir des pics EPIC pour chaque librairie
 #Le but est de regarder la repartition des pics pour enlever les moins bons et ne garder que les meilleurs
-
+############################################################################################################
 
 library(stringr)
 library(qqman)

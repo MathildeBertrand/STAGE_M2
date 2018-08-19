@@ -1,6 +1,10 @@
-################################################
-#Analyse r des fichiers de sortie de RepEnrich2
-################################################
+####################################################################################
+#Mathilde Bertrand
+#Juin/Juillet 2018
+#Analyse R des fichiers de sortie de RepEnrich2
+#Dans ce fichier, analyse differentielle avec DESeq2
+#Puis analyse ACP centree reduite et MAplot colorie sur certains elements repetes
+#####################################################################################
 
 library(FactoMineR)
 library(RColorBrewer)
@@ -28,9 +32,9 @@ colData = data.frame(conditions = factor(colnames(data)))
 
 
 
-################################################
-# Strategie 1 : Analyse differentielle basique
-################################################
+############################################################
+# Strategie 1 : Analyse differentielle classique avec DESeq2
+############################################################
 
 #ACP avant DESeq
 dds = DESeqDataSetFromMatrix(data,colData, formula(~conditions))
@@ -61,12 +65,14 @@ for (i in 1:6){
 }
 dev.off()
 
+#=>Au vue de cette ACP, on suppose que lanalyse differentielle nest pas tres bien engagee (on va quand meme le faire) => Il semblerait que une lib ne se comporte pas comme un replicat et 
+#Que ce comportement affecte la normalisation par DESeq2
 
 ######################
-#DesEq
+#DESeq2
 ######################
+
 data2compare = data[, c(1,2,3,4) ]
-
 colData = data.frame(conditions = factor(c("ctrl", "ctrl", "treat", "treat")))
 
 dds = DESeqDataSetFromMatrix(data2compare, colData, formula(~conditions))
@@ -86,38 +92,41 @@ resOrdered<-res[order(res$padj),]
 # Sauvez le fichier statistique
 write.table(as.data.frame(resOrdered), file="home/mbertrand/Bureau/diffana_DESeq2_data2compare_repEnrich2.txt", sep="\t")
 
+#=> Le graphique ne trouve aucun elements repetes qui sortent du nuage de points (on s'y attendait un peu)
 
-########################################################################################
+##############################################################################################
 #Nouvelle strategie...
 #Comme nos donnees HD1 et HD2 ne se comportent pas comme des réplicats, on change de strategie
-########################################################################################
+##############################################################################################
 
 
-#On refais l'ACP mais en centree reduite
+#On refais l'ACP mais cette fois ci sans la normalisation faite par DESeq2
+#Juste en centree reduite
+
 transpose = t(data)
 res.pca = PCA(transpose, scale.unit=T, ncp=3, graph=F)
 
-conditions_legend = c("ctrl", "treat", "public")
-colors_legend=c("#542788", "#8073ac", "#b2abd2")
-colors_pca= c("#542788","#542788","#8073ac","#8073ac", "#b2abd2")
+conditions_legend = c("ctrl", "treat")
+colors_legend=c("#542788", "#8073ac")
+colors_pca= c("#542788","#542788","#8073ac","#8073ac")
 
 pdf("myPCA.pdf", onefile = TRUE)
 for (i in 1:3){
   shift = i+1
   for (j in shift:4){
-    
     plot.PCA(res.pca, choix="ind", habillage="ind", axes=c(i,j), cex=1,col.hab=colors_pca, title=paste("PCA dim",i, "/dim", j, sep=""), new.plot=FALSE)
     legend("topright", legend=conditions_legend, col=colors_legend, pch=15, cex =1, border="white")
-    
   }
 }
 dev.off()
 
 ########################################################################################
-#L'ACP montre que HD1 et HD2 ne sont pas des replicats. Lanalyse precedente avec DeSeq nest donc pas envisageable
+#L'ACP montre que HD1 et HD2 ne sont pas des replicats. 
+#Lanalyse precedente avec DeSeq nest donc pas envisageable
+
 #HD1 est retiree du jeu de donnee
 #On va donc comparer HD2 a la moyenne de HDm1 et HDm2
-#On va juste faire un MAplot : il faut les RPKM de chaque librairie
+#On va juste se limiter a un MAplot : il faut les RPKM de chaque librairie
 ########################################################################################
 
 #RPKM et creation dun dataframe les contenant
@@ -133,10 +142,15 @@ final=data.frame(LogFC,log2((moy)),data$type,row.names = row.names(data))
 par(mfrow=c(1,1))
 plot(((final$log2..moy..)),final$LogFC,type="p",ylab="Log2FC",xlab="Log2 de la moyenne des comptages",main="RepEnrich")
 
+#----------------------
 #Coloration des points
+#----------------------
+
+#Satellites
 GSAT=final[grep("GSAT",row.names(final)),]
 SATMIN=final[grep("SYNREP_MM",row.names(final)),]
 
+#L1
 L1=final[grep("L1",final$data.type),]#Recuperation de tous les L1
 L1neg=L1
 L1=L1[L1$LogFC>(0.3),]
@@ -144,10 +158,12 @@ L1=L1[L1$log2..moy..> (1),]
 L1neg=L1neg[L1neg$LogFC<(-0.3),]
 L1neg=L1neg[L1neg$log2..moy..> (1),]
 
+#SINE
 SINE=final[grep("SINE",final$data.type),]#De tous les SINE
 SINE=SINE[SINE$LogFC>(0.3),]
 SINE=SINE[SINE$log2..moy..> (1),]
 
+#Simple_repeat
 simple=final[grep("Simple_repeat",final$data.type),]
 simpleneg=simple
 simple=simple[simple$LogFC>(0.3),]
@@ -155,7 +171,7 @@ simple=simple[simple$log2..moy..> (1),]
 simpleneg=simpleneg[simpleneg$LogFC< (-0.3),]
 simpleneg=simpleneg[simpleneg$log2..moy..> (1),]
 
-
+#HAT
 HAT=final[grep("hAT",final$data.type),]
 HATneg=HAT
 HAT=HAT[HAT$LogFC>(0.3),]
@@ -163,6 +179,7 @@ HAT=HAT[HAT$log2..moy..> (1),]
 HATneg=HATneg[HATneg$LogFC<(-0.3),]
 HATneg=HATneg[HATneg$log2..moy..> (1),]
 
+#tRNA
 tRNA=final[grep("tRNA",final$data.type),]
 tRNAneg=tRNA
 tRNA=tRNA[tRNA$LogFC>(0.3),]
@@ -170,12 +187,14 @@ tRNA=tRNA[tRNA$log2..moy..> (1),]
 tRNAneg=tRNAneg[tRNAneg$LogFC<(-0.3),]
 tRNAneg=tRNAneg[tRNAneg$log2..moy..> (1),]
 
+#ERV
 ERV=final[grep("ERV",final$data.type),]
 ERVneg=ERV
 ERV=ERV[ERV$LogFC>(0.3),]
 ERV=ERV[ERV$log2..moy..> (1),]
 ERVneg=ERVneg[ERVneg$LogFC<(-0.3),]
 ERVneg=ERVneg[ERVneg$log2..moy..> (1),]
+
 
 points(L1$log2..moy..,L1$LogFC,col="#66a61e",pch=16) #vert a changer
 points(L1neg$log2..moy..,L1neg$LogFC,col="#66a61e",pch=16)

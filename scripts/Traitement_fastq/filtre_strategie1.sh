@@ -37,23 +37,61 @@ sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
 
 for i in ${sample_list[*]};do
 
+#On se place dans le dossier de rangement : 
+if [ $i == "A878C17" ] 
+then
+dossier='data17'
+#echo $i
 
-cd raw_data
-bowtie2 --sensitive -x /genome_ref/mouse -k 2 -p 4 -1 ${i}.R1.Trimmed.fastq -2 ${i}.R2.Trimmed.fastq -S ../analysis/mapping/${i}/${i}.sam #Alignement sur genome de reference
+elif [ $i == "A878C18" ] 
+then
+dossier='data18'
 
-cd ../analysis/mapping
+elif [ $i == "A878C19" ] 
+then
+dossier='data19'
 
-#Application des filtres
-cd ${i}
+elif [ $i == "A878C20" ] 
+then
+dossier='data20'
+
+else [ $i == "A878C21" ] 
+dossier='data21'
+fi
+
+echo Debut de lalignement sur le genome de reference et de lapplication des filtres pour ${i}
+
+bowtie2 --sensitive -x /raw_data/genome_ref/mouse -k 2 -p 4 -1 /raw_data/${i}.R1.Trimmed.fastq -2 /raw_data/${i}.R2.Trimmed.fastq -S /analysis/mapping/$dossier/${i}.sam #Alignement sur genome de reference
+samtools view -Sb  /analysis/mapping/$dossier/${i}.sam  > /analysis/mapping/$dossier/${i}.bam #Conversion sam en bam 
+
+#Application des filtres 
+cd analysis/mapping/$dossier
 samtools sort ${i}.bam > ${i}.sort.bam #Tri des fichiers
+cd Filtres
 samtools view -f 0x2 -b ${i}.sort.bam > ${i}.paired.bam #Filtre1
 samtools rmdup -S ${i}.paired.bam ${i}.rmdup_paired.bam #Filtre2
 samtools view -H ${i}.rmdup_paired.bam > header.sam #Filtre3
 samtools view -F 4  ${i}.rmdup_paired.bam | grep -v "XS:" | cat header.sam - | samtools view -b - > ${i}.rmdup_paired_uniques.bam #Filtre3
-cd ../
-echo Fin de lalignement sur le genome de reference, de lapplication des filtres pour ${i}
+
+echo Fin de lalignement sur le genome de reference et de lapplication des filtres pour ${i}
+
+
+#########################################################
+#Pre-traitements pour la detection de pics EPIC
+#########################################################
+
+echo Pre-traitements pour la detection des pics de ${i}
+samtools sort -n ${i}.rmdup_paired_uniques.bam> ${i}.rmdup_paired_uniques_sort.bam #Sort des fichiers
+bamToBed -i ${i}.rmdup_paired_uniques_sort.bam -bedpe > ${i}.rmdup_paired_uniques_sort.bedpe #Conversion bam en bed
+awk -F "\t" '{print "chr" $1 "\t" $2 "\t" $3 "\tchr" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' ${i}.rmdup_paired_uniques_sort.bedpe > ../../EPIC/${i}.rmdup_paired_uniques_sortChr.bedpe
+echo Fin des pre-traitements pour la detection des pics de ${i}
+
+cd ../../../../ #On se replace dans le dossier initial
+
 done
-cd ../
+
+
+
 ###################
 #Detection de pics
 ###################
@@ -62,24 +100,18 @@ cd ../
 #macs2 callpeak -t ${i}bis.rmdup_paired_uniques.bam -c ../A878C21/A878C21bis.rmdup_paired_uniques.bam -f BAMPE -g mm -n ${i} --broad
 
 #Detection de pics avec EPIC : 
-cd Pics
-mkdir EPIC
-cd EPIC
 
-samtools sort -n analysis/mapping/A878C21/A878C21.rmdup_paired_uniques.bam > A878C21.rmdup_paired_uniques_sort.bam
-bamToBed -i A878C21.rmdup_paired_uniques_sort.bam -bedpe > A878C21.rmdup_paired_uniques_sort.bedpe
-awk -F "\t" '{print "chr" $1 "\t" $2 "\t" $3 "\tchr" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' A878C21.rmdup_paired_uniques_sort.bedpe > A878C21.rmdup_paired_uniques_sortChr.bedpe
 
-sample_list=(A878C18 A878C19 A878C20 A878C17)
+sample_list=(A878C17 A878C18 A878C19 A878C20)
 for i in ${sample_list[*]};do
-cd Analyses/${i}
-samtools sort -n ${i}.rmdup_paired_uniques.bam> ${i}.rmdup_paired_uniques_sort.bam
-bamToBed -i ${i}.rmdup_paired_uniques_sort.bam -bedpe > ${i}.rmdup_paired_uniques_sort.bedpe
-awk -F "\t" '{print "chr" $1 "\t" $2 "\t" $3 "\tchr" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' ${i}.rmdup_paired_uniques_sort.bedpe > ${i}.rmdup_paired_uniques_sortChr.bedpe
-epic --treatment ${i}.rmdup_paired_uniques_sortChr.bedpe --control ../A878C21.rmdup_paired_uniques_sortChr.bedpe --number-cores 20 --genome mm10 --window-size 20000 --outfile ${i}bis_unique_W20k.txt 
+echo Debut EPIC pour ${i}
+cd analysis/Pics/EPIC
+epic --treatment ${i}.rmdup_paired_uniques_sortChr.bedpe --control A878C21.rmdup_paired_uniques_sortChr.bedpe --number-cores 20 --genome mm10 --window-size 20000 --outfile ${i}bis_unique_W20k.txt 
 echo Fin EPIC  pour ${i}
 cd ..
 done
+
+#Rangements des fichiers de la detection de pics EPIC
 
 
 

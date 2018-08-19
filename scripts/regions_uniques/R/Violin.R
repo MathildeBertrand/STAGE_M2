@@ -1,6 +1,6 @@
 #########################################################################################@
 #Juillet 2018
-#Tracer des violin plot pour determiner les tailles des pics EPIC
+#Tracer des violin plot pour comparer les tailles des pics EPIC entre HD2 et HDm1/HDm2
 
 #Input : les pics de la librairie HD2 et les pics des librairies HDm mis en communs
 #Pour le merge de pics HDm : concantenation, tri des chrs/start/stop et bedtools merge
@@ -13,9 +13,12 @@ library("ggplot2")
 HD2=read.delim('/Users/mathildebertrand/Downloads/peak18FDR.txt', header=F,sep=" ") #Fichier de pics de HD2
 HDm=read.delim('/Users/mathildebertrand/Downloads/merge_peaksHDm_e20.bed', header=F,sep="\t") #Fichier de pics de HDm
 
+#On calcule la taille des pics pour chaque pics : 
 traie=(HD2$V4-HD2$V3) #Sum=387699728
 Controle=c(HDm$V3-HDm$V2)#Sum=475099800
 
+
+#Creation dun dataframe commun entre les deux conditions pour pouvoir tracer sur le meme graphique
 data_final_compile = data.frame(rbind(cbind("HD", as.numeric(traie)), cbind("HDm", as.numeric(Controle))))
 colnames(data_final_compile) = c("DataType", "Length")
 data_final_compile$Length = as.numeric(as.character(data_final_compile$Length))
@@ -43,7 +46,7 @@ ggplot(data=data_final_compile, aes(x=DataType, y=Length, fill=DataType)) +
 dev.off()
 
 ###########################################
-#Combien de pics commmuns aux 2 fichiers ?
+#Combien de pics commmuns aux 2 fichiers ? => Test. Ce resultat peut aussi etre obtenus avec le script compare_peaks.py
 #En commun : bedtools intersect entre les deux fichiers transformes au format bed
 #Pics uniques à HD : 94039902 => 94 Mb
 #Pics communs aux deux : 293659826 => 293 Mb
