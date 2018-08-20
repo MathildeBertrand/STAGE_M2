@@ -34,7 +34,7 @@ Une fois les pics mis en communs grâce à compare_peak.py, ils peuvent être an
 
 ```
 python annotate_domains_v3.0.py -f MY_doms.txt -t 500 
-``
+```
 
 ### Genome_decoupe_fenetres
 
