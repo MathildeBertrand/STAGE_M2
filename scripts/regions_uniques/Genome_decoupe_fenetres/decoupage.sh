@@ -1,17 +1,23 @@
 ########################################################
-#Decouper le genome en fenetres
+#Fin juin 2018
+#Mathilde Bertrand
+#Analyse du genome decoupe en fenetres
 #Et compter le nombre de reads dans chacune des fenêtres
 ########################################################
+
+#On determine la longueur et le nombre de fenetre que lon va utiliser : 
 python /home/duvernois/SOFTS/UTILS/get_length_fasta.py -f Mus_musculus.GRCm38.dna.primary_assembly.fa -o Mus_musculus.GRCm38.dna.primary_assembly.count
-# genome size
-# 2 730 871 774
+# genome size : 2 730 871 774
 # pour 50 000 fenetres ==> fenetres d'environ 55Kb
 
-########################################################
+#################################################################
 # utilisation des bedtools pour creer les fenetres
 #Fenetres de 55, 15, 15 et 5 Kb
-########################################################
+# => Pour regarder si la taille des fenetres change les resultats
+#################################################################
+
 sed '1d' Mus_musculus.GRCm38.dna.primary_assembly.count | awk -F "\t" '{print $1 "\t" $2}' > Mus_musculus.GRCm38.dna.primary_assembly.genome
+
 sample_list=(55 25 15 5)
 for i in ${sample_list[*]};do
 bedtools makewindows -g /home/duvernois/PROJECTS/STAGE_MATHILDE/cut_signal_windows/Mus_musculus.GRCm38.dna.primary_assembly.genome -w ${i} > Mus_musculus.GRCm38.dna.primary_assembly.win${i}K.bed
@@ -24,20 +30,25 @@ awk -F "\t" '{print $1 "\tmm10\twin5K\t" $2 "\t" $3 "\t.\t+\t.\tID=win5Kb_" NR}'
 
 
 ###############################################
-# creation d'un bam "single-end" pour comptage
+#Comptage
 ###############################################
-sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
-for i in ${sample_list[*]};do
-bamToBed -i A878C${i}.rmdup_paired_uniques.bam | awk -F "\t" '{print $1 "\t" $2 "\t" $3 "\tread_" NR "\t" $5 "\t" $6}' | bedToBam -i stdin -g /home/duvernois/PROJECTS/STAGE_MATHILDE/cut_signal_windows/Mus_musculus.GRCm38.dna.primary_assembly.genome > A878C${i}bis.rmdup_paired_uniques.SE.bam
-done
+# creation d'un bam "single-end"  : 
+#sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
+#for i in ${sample_list[*]};do
+#bamToBed -i A878C${i}.rmdup_paired_uniques.bam | awk -F "\t" '{print $1 "\t" $2 "\t" $3 "\tread_" NR "\t" $5 "\t" $6}' | bedToBam -i stdin -g /home/duvernois/PROJECTS/STAGE_MATHILDE/cut_signal_windows/Mus_musculus.GRCm38.dna.primary_assembly.genome > A878C${i}bis.rmdup_paired_uniques.SE.bam
+#done
+#=>
+# comptage avec htseq count => pb
 
-########################################################
-# comptage
-# pb with htseq count
-# test bedtools coverage (version 2.21)
-########################################################
+
+################################################################################################################
+# Du coup, comptages avec bedtools coverage (version 2.21) qui pour chaque fenetre calcule la couverture de reads 
+#pour chaque fenetres
+################################################################################################################
+
 sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
 for i in ${sample_list[*]};do
+bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win55K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win55K.count
 bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win25K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win25K.count
 bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win15K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win15K.count
 bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win5K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win5K.count
@@ -49,7 +60,7 @@ done
 ############################################################
 sample_list=(55 25 15 5)
 for i in ${sample_list[*]};do
-python /home/duvernois/PROJECTS/STAGE_MATHILDE/cut_signal_windows/compile_bedcov.py -o win${i}K_IP.count A878C17.rmdup_paired_uniques_win${i}K.count A878C18.rmdup_paired_uniques_win${i}K.count A878C19.rmdup_paired_uniques_win${i}K.count A878C20.rmdup_paired_uniques_win${i}K.count
+python compile_counts.py -o win${i}K_IP.count A878C17.rmdup_paired_uniques_win${i}K.count A878C18.rmdup_paired_uniques_win${i}K.count A878C19.rmdup_paired_uniques_win${i}K.count A878C20.rmdup_paired_uniques_win${i}K.count
 done
 
 ############################################
@@ -68,31 +79,25 @@ data <- data.frame(
   HDm2=data$A878C20bis.rmdup
 )
 
-write.table(as.data.frame(data), file="15/15KCountRPKM.txt", sep="\t") #Sauvegarde du fichier statistique
 
+#ACP
 res.pca = PCA(t(data), scale.unit=TRUE, ncp=5, graph=F)
 conditions_legend = c("TALE-HD", "TALE-HDm")
 colors_legend=c("#d7191c" ,"#2b83ba")
 colors_pca= c("#d7191c", "#d7191c", "#2b83ba", "#2b83ba")
-
-
-
-
 pdf("55/win55K_IP_PCA_scaleUnit_all.pdf", onefile = TRUE) 
 
 for (i in 1:2){ 
         shift = i+1
         for (j in shift:3){
-                
                 plot.PCA(res.pca, choix="ind", habillage="ind", axes=c(i,j), cex=1, col.hab=colors_pca, title=paste("PCA dim",i, "/dim", j, sep=""), new.plot=FALSE)
                 legend("bottomleft", legend=conditions_legend, col=colors_legend, pch=15, cex =1, border="white")
-                
         }
 }
 dev.off()
 
 
-#Creation table de comptage RPKM pour MAplot
+#Creation table de comptage RPKM pour MAplot => permet de verifier la coherence des resultats
 HD2=(data$A878C18bisb.rmdup/54345988)*10000000
 HDm1=(data$A878C19bisb.rmdup/32999592)*10000000
 HDm2=(data$A878C20bisb.rmdup/37758020)*10000000
@@ -115,7 +120,7 @@ write.table(as.data.frame(final), file="Compatges15.txt", sep="\t")
 ########################################################################################################
 #Test dune nouvelle methode pour decouper le genome en fenetres
 #Utilisation de bamCoverage pour calculer des fentres en rpkm => na pas donne des resultats concluants
-#Decoupe pas les fenetres de la meme maniere dun echantillon a un autre
+#Car ne decoupe pas les fenetres de la meme maniere dun echantillon a un autre
 ########################################################################################################
 
 
