@@ -5,7 +5,7 @@
 Mathilde Bertrand
 7 mai 2018
 
-Pour le fichier ous les pics sont mis comme overallapnts => conversion en un fichier gtf
+ conversion dun fichier de pics chevauchants en un fichier gtf
 """
 obFichier1 = open("/home/mbertrand/Bureau/scripts/pipeline/Pic_detection/scripts/uniqueF2Conditions.txt",'r')
 output=open("/home/mbertrand/Bureau/scripts/pipeline/Pic_detection/scripts/communEpic.txt","w")

@@ -6,7 +6,7 @@
 ##########################################
 
 
-grep -E "EID|DIE" outfile.txt > geneOfInterest.txt #On recupere les lignes qui sont marquees DIE ou EID
+grep -E "EID|DIE|OA|OB" outfile.txt > geneOfInterest.txt #On recupere les lignes qui sont marquees DIE ou EID
 #outfile.txt est le fichier de sortie du script annotate_domains_v3.0.py
 
 awk '{print $6}' geneOfInterest.txt > ListeGene.txt #On extrait le nom des genes marques DIE ou EID

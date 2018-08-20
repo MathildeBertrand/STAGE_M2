@@ -84,7 +84,8 @@ usage = '''
         |                                                                                                               |
         |   Exemple: python annotate_domains_v3.0.py -f MY_doms.txt -t 500                                              |
         |                                                                                                               |
-        |   ED (05/03/12)                                                                                               |
+        |   ED (05/03/12)    adaptee en juin 2018 (Mathilde Bertrand) pour permettre annotation des pics 
+            avec une annotation de genes                                                                                |
          _______________________________________________________________________________________________________________
 
 

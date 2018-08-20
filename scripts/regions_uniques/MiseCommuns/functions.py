@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 #-*- coding : utf8 -*-
 
+"""
+#Mathilde Bertrand
+#7 mai 2018
+#Les differentes fonction qui sont appellees dans le script compare_peak.py
+"""
 
 def OverlapByTwo(dico):
     """
@@ -45,10 +50,10 @@ def OverlapByTwo(dico):
                 
                
                 #Test des differentes conditions d overlappe :
-                if (end1 <end2 and start1 >start2): #le pic1 est compris dans le pic2 => le pic2 est donc le plus grand
+                if (end1<end2 and start1>start2): #le pic1 est compris dans le pic2 => le pic2 est donc le plus grand
                     startBis=start2
                     endBis=end2
-                elif (end1 >end2 and start2>start1): #Le pic2 est compris dans le pic1 => le pic1 est donc le plus grand
+                elif (end1>end2 and start2>start1): #Le pic2 est compris dans le pic1 => le pic1 est donc le plus grand
                     startBis=start1
                     endBis=end1
                 elif (end2>start1 and start2<start1 and end1 >= end2) : #Le pic 2 overlap mais deborde sur la gauche =>on retient donc le start du pic2 et le end du pic1 pour avoir le plus grand overlap possible
@@ -58,16 +63,13 @@ def OverlapByTwo(dico):
                     startBis = start1
                     endBis = end2
                                        
-                   
+              
+                #Remplissage dico des overlappes 2 a 2 :    
+                if (startBis!="" and endBis!=""): #Si les deux pics se chevauchent
                     
-                         
-            #Remarque : les deux dernieres conditions ne sont pas necessaire comme ce sont les memes que les conditions 3 et 4 mais vues sous un autre angle. Bref ne change pas la face du monde => je pers juste mon temps
-            #Remplissage dico des overlappes 2 a 2 :    
-                if (startBis !="" and endBis !=""): #Si les deux pics commes soverlappent
-                    
-                    temp[names1]=[] #on les stocke
+                    temp[names1]=[] #on les stocke dans un dico temporaire (permettra den deduire les pics non chevauchants)
                     temp[names2]=[]
-                    names=names1+"-"+names2
+                    names=names1+"-"+names2 #Concanteantion des noms
                     overlapByTwo[names]=[]
                     overlapByTwo[names].append(chrs1)
                     overlapByTwo[names].append(startBis)
@@ -82,15 +84,14 @@ def OverlapByTwo(dico):
 def OverlapMutliple(overlapByTwo):
     """
     Pour chaque overlappe 2 a 2 definit plus tot, on regarde si il y a un overlappe multiple : exemple si A overlappe B et B overlappe C
-    Input : le dico doverlappe  2 a 2
-    Output : un dico doverlappe de pics 
+    Input : le dico de chevauchement  2 a 2
+    Output : un dico de chevauchement multiple de pics 
     """
     comm={} #Dictionnaire doverlappe multiple
 
     for cle,valeur in overlapByTwo.items():
         
         name=cle
-        
         chrs=valeur[0]
         start=valeur[1]
         stop=valeur[2]
@@ -104,7 +105,7 @@ def OverlapMutliple(overlapByTwo):
         for cle,valeur in comm.items():
             for noms,position in valeur.items():
                 
-                if cle== chrs and noms != name: #On est sur le meme  chrs mais pas sur le meme pic
+                if cle==chrs and noms!=name: #On est sur le meme chrs mais pas sur le meme pic
                     i=0
                     complexe=[]
                     starte=[]
@@ -114,7 +115,7 @@ def OverlapMutliple(overlapByTwo):
                     if(int(position[0]) <= int(stop) <= int(position[1]) and int(position[0]) <= int(start) <= int(position[1])): #Le nouveau pic inclut celui qui etait present
                            #On modifie le nom
                            #On supprime les deux pics detectes dans le dico
-                           #On cree une nouvelle entree dans le dico qui contient le nouveau nom et les bornes qui sont celle du pic que lon regarde
+                           #On cree une nouvelle entree dans le dico qui contient le nouveau nom et les bornes corrigees
                         newName=name+"-"+noms
                                                                            
                         if noms in comm[chrs]:
@@ -133,7 +134,6 @@ def OverlapMutliple(overlapByTwo):
                     elif(int(start) <= int(position[1]) and int(position[1]) <= int(stop) and int(start) <= int(position[0]) and int(position[0])<= int(stop)):#Le nouveau pic est inclut dans celui qui etaient deja present 
                         i=i+1
                       
-                                                 
                         #Alors on change le nom et on fixe les nouvelles bornes
                         newName=name+"-"+noms
                         if noms in comm[chrs]:
@@ -149,7 +149,7 @@ def OverlapMutliple(overlapByTwo):
                         stoppe.append(stop)
                         
                     elif(int(start) <= int(position[1]) <= int(stop) and int(position[0])<int(start)): #Le nouveau pic est inclut et deborde sur la droite
-                            #Alors on change les bornes en prenant le min et le max et on change le nom
+                        #Alors on change les bornes en prenant le min et le max et on change le nom
                         i=i+1
                         
                         newName=name+"-"+noms
@@ -184,8 +184,6 @@ def OverlapMutliple(overlapByTwo):
                         stoppe.append(position[1])
                     
                        
-    
-        
     return(comm) #Retourne un dico doverlappe multiple
 
 def writeOutput(outputName,OutputOverlapMutliple,diff,dico):

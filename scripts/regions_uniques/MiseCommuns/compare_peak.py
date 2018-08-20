@@ -7,7 +7,9 @@ Mathilde Bertrand
 
 But : determiner pour deux fichiers de pics ceux qui sont communs au deux et ceux qui sont uniques
 
-Input : les deux fichiers de pics EPIC
+Input : les deux fichiers de pics EPIC (ou avec un autre detecteur de pics mais il faudra faire attention au format du fichier)
+Format du fichier de pics (les colonnes sont separees par des espace)  : Chromosome Start End ChIP Input Score Fold_change P FDR
+=> Les fichiers doivent etre fournis sans la ligne dentete 
 
 Output : 
 4 fichiers de sortie au format txt avec pour chaque pic  : son nom, son  s, sa position sur le  s
@@ -65,30 +67,22 @@ if __name__ == "__main__":
         
         j=0
         for line in obFichier1.readlines(): #Pour chaque lignes du fichier
-            j=j+1 #Le numero de peak
+            j=j+1 #Le numero de peak => permet daffecter un nom au pic (car EPIC ne nomme pas les pics contrairement a MACS2)
+            
+            #Recuperation des caracteristiques des pics : son chrs et ses positions start/stop et son nom
             ligne=line.split(" ")
                     
-            chrs=ligne[1]
-            chrs=chrs.split('"')
+            chrs=ligne[0]
+            #chrs=chrs.split('"')
+            #chrs=chrs[1]
+            chrs=chrs.split("chr") #Suprresion du mot chr (on a juste besoins du chiffre)
             chrs=chrs[1]
-            chrs=chrs.split("chr")
-            chrs=chrs[1]
-         
-          
-            start=ligne[2]
-            end=ligne[3]
+        
+            start=ligne[1]
+            end=ligne[2]
            
                 
-   
-            if (len(ligne)==10):
-                name="Peak"+str(i)+"_"+str(j)
-               
-                
-            else:
-                name=ligne[3]
-                name=name.split("\n")
-                name=name[0]
-        
+            name="Peak"+str(i)+"_"+str(j) #Creation dun nom de pics
             lenght=int(end)-int(start) #la longueur du pic
         
             if (name not in dic):
@@ -103,8 +97,7 @@ if __name__ == "__main__":
 
     overlappe=func.OverlapByTwo(dic)
     
-    #Recherche des overlappes multiples
-    
+    #Recherche des overlappes multiples :
     multiples = func.OverlapMutliple(overlappe[0])
  
     #Recherche des pics uniques a un fichier :
@@ -112,7 +105,7 @@ if __name__ == "__main__":
    
    
 ########################################################
-#           Ecriture des fichiers de sortie
+#           Ecriture dans les fichiers de sortie
 ########################################################
 
     func.writeOutput(output,multiples,difference,dic)
