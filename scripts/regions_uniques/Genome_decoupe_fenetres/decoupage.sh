@@ -20,7 +20,7 @@ sed '1d' Mus_musculus.GRCm38.dna.primary_assembly.count | awk -F "\t" '{print $1
 
 sample_list=(55 25 15 5)
 for i in ${sample_list[*]};do
-bedtools makewindows -g /home/duvernois/PROJECTS/STAGE_MATHILDE/cut_signal_windows/Mus_musculus.GRCm38.dna.primary_assembly.genome -w ${i} > Mus_musculus.GRCm38.dna.primary_assembly.win${i}K.bed
+bedtools makewindows -g Mus_musculus.GRCm38.dna.primary_assembly.genome -w ${i} > Mus_musculus.GRCm38.dna.primary_assembly.win${i}K.bed
 done
 
 awk -F "\t" '{print $1 "\tmm10\twin55K\t" $2 "\t" $3 "\t.\t+\t.\tID=win55Kb_" NR}' Mus_musculus.GRCm38.dna.primary_assembly.win55K.bed | awk -F "\t" '{if ($4 ==0) print $1 "\t" $2 "\t" $3 "\t1\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9; else print $0}' > Mus_musculus.GRCm38.dna.primary_assembly.win55K.gff
@@ -38,12 +38,10 @@ awk -F "\t" '{print $1 "\tmm10\twin5K\t" $2 "\t" $3 "\t.\t+\t.\tID=win5Kb_" NR}'
 #bamToBed -i A878C${i}.rmdup_paired_uniques.bam | awk -F "\t" '{print $1 "\t" $2 "\t" $3 "\tread_" NR "\t" $5 "\t" $6}' | bedToBam -i stdin -g /home/duvernois/PROJECTS/STAGE_MATHILDE/cut_signal_windows/Mus_musculus.GRCm38.dna.primary_assembly.genome > A878C${i}bis.rmdup_paired_uniques.SE.bam
 #done
 #=>
-# comptage avec htseq count => pb
-
+# comptage avec htseq count => PROBLEME
 
 ################################################################################################################
 # Du coup, comptages avec bedtools coverage (version 2.21) qui pour chaque fenetre calcule la couverture de reads 
-#pour chaque fenetres
 ################################################################################################################
 
 sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)

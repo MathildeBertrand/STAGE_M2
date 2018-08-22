@@ -14,7 +14,7 @@
 library(FactoMineR)
 
 
-count=read.delim('/Users/mathildebertrand/Downloads/repbase.count', header=T)
+count=read.delim('/Users/mathildebertrand/Downloads/repbase_R1.count', header=T)
 
 ######################################################
 #ACP pour regarder le comportement des librairies :

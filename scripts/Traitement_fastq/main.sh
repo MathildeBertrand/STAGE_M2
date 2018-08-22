@@ -40,19 +40,27 @@ sample_list=(A878C17.R1 A878C17.R2 A878C18.R1 A878C18.R2 A878C19.R1 A878C19.R2 A
 dossier_name=(A878C17 A878C18 A878C19 A878C20 A878C21)
 j=0
 
-cd Tools
+cd ../../Tools
+
 #Analyse qualite avec les sequences completes : 
 
-./fastqc /raw_data/${i}.fastq -o /rddm1/mbertrand/FASTQC/fastqc_beforeTrimmer/
+./fastqc /raw_data/labo_curie/fastq/${i}.fastq -o /analysis/FASTQC/fastqc_beforeTrimmer/
 
 #Trimmer le debut des sequences pour tous les fichiers
 #cd ../raw_data/
 for i in ${sample_list[*]};do
-fastx_trimmer -Q33 -f 5 -i /raw_data/${i}.fastq -o /raw_data/${i}.Trimmed.fastq
+fastx_trimmer -Q33 -f 5 -i /raw_data/labo_curie/fastq/${i}.fastq -o /raw_data/${i}.Trimmed.fastq
 j=$(($j + 1))
-done
+
 #Relancer fastqc pour regarder limpact de trimmer
-./fastqc /raw_data/${i}.Trimmed.fastq -o /Analyses/FASTQC/nos-datas/fastqc_afterTrimmer/
+./fastqc /raw_data/labo_curie/fastq/${i}.Trimmed.fastq -o /analysis/FASTQC/nos-datas/fastqc_afterTrimmer/
+done
+
+#Rangement : 
+cd ../raw_data/labo_curie
+mkdir Trimme #Creation dun dossier de rangement des fastq trimes
+mv *${i}.Trimmed.fastq Trimme/
+
 
 #################################
 #Analyse sur les regions uniques
