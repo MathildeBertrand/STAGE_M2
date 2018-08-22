@@ -88,4 +88,4 @@ Il faut également que les outils suivants soient installés : bowtie2, samtools
 
 Les dossiers Trimme (les fichiers fastq trimés des 5 premières paires de bases), FASTQC (contenant les éléments d'analyse qualité), mapping (contenant les différents fichiers d'alignments et les fichiers bam filtrés), et PICS (contenant les résultats de la détection de pics), Repenrich, repBaseMapping et Fenetres (analyse du genome decoupes en fenetres) sont crées au moment de l'analyse.
 
-![alt text](https://github.com/MathildeBertrand/STAGE_M2/blob/master/scripts/Organisation_dossiers.png)
+![alt text](https://github.com/MathildeBertrand/STAGE_M2/blob/master/Organisation_dossiers.png)
