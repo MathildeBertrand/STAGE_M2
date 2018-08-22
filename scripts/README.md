@@ -37,7 +37,7 @@ Une fois les pics mis en communs grâce à compare_peak.py, ils peuvent être an
 
 ```
 python annotate_domains_v3.0.py -f <INPUT> -a <annot> -e <extension> -t <THRESHOLD> -o <OUTPUT> 
-``
+```
 
 ### Genome_decoupe_fenetres
 
@@ -88,4 +88,4 @@ Il faut également que les outils suivants soient installés : bowtie2, samtools
 
 Les dossiers Trimme (les fichiers fastq trimés des 5 premières paires de bases), FASTQC (contenant les éléments d'analyse qualité), mapping (contenant les différents fichiers d'alignments et les fichiers bam filtrés), et PICS (contenant les résultats de la détection de pics) sont crées au moment de l'analyse.
 
-![alt text](https://github.com/MathildeBertrand/STAGE_M2/tree/master/scripts/Organisation_dossier)
+![alt text](https://github.com/MathildeBertrand/STAGE_M2/blob/master/scripts/Organisation_dossiers.png)
