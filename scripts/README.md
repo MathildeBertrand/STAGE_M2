@@ -86,6 +86,6 @@ Tools : contenant les outils fastq et bigwigtobedgraphe, RepEnrich2, IGV, circos
 analysis
 Il faut également que les outils suivants soient installés : bowtie2, samtools, bedtools, deeptools, R (avec les packages FactoMineR, DeSeq2), epic, (macs2)
 
-Les dossiers Trimme (les fichiers fastq trimés des 5 premières paires de bases), FASTQC (contenant les éléments d'analyse qualité), mapping (contenant les différents fichiers d'alignments et les fichiers bam filtrés), et PICS (contenant les résultats de la détection de pics) sont crées au moment de l'analyse.
+Les dossiers Trimme (les fichiers fastq trimés des 5 premières paires de bases), FASTQC (contenant les éléments d'analyse qualité), mapping (contenant les différents fichiers d'alignments et les fichiers bam filtrés), et PICS (contenant les résultats de la détection de pics), Repenrich, repBaseMapping et Fenetres (analyse du genome decoupes en fenetres) sont crées au moment de l'analyse.
 
 ![alt text](https://github.com/MathildeBertrand/STAGE_M2/blob/master/scripts/Organisation_dossiers.png)
