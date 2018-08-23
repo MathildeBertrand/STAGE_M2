@@ -12,6 +12,15 @@
 ############################################################################################
 
 
+#Indexation du genome pour les elements repetes : 
+cd /home/raw_data/genome_ref/
+mkdir genomeRepeat
+cd genomeRepeat
+bowtie2-build rodrep.ref rodrep
+cd /home/
+
+
+
 sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
 mate=(R1 R2)
 
@@ -24,8 +33,8 @@ fastx_trimmer -Q33 -l 36 -i /raw_data/labo_curie/Trimme/${i}.${j}.Trimmed.fastq 
 #2. ALignement contre RepBase en single End En Very sensitive (on le fait avec les deux mates pour verifier que on a les memes resultats)
 bowtie2 --very-sensitive -x /raw_data/genome_ref/genomeRepeat/rodrep -k 2 -p 4 -1 /raw_data/${i}.${j}.Trimmed35.fastq -S ${i}Rebpase_${j}.sam
 
-#3. On compte combien de reads salignent sur chaque elements :
-bedtools coverage -b rodrep.bed -abam -S ${i}Rebpase_${j}.bam > ${i}_${j}RepBase.count
+#3. On compte le nbr de reads qui salignent sur chaque elements repetee : (rodrep.bed est le fichier annote repeat_maske recupere sur UCSC)
+bedtools coverage -a rodrep.bed -b ${i}Rebpase_${j}.bam > ${i}_${j}RepBase.count
 
 done
 done

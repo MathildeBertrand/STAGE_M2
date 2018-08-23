@@ -7,9 +7,13 @@
 #Automatisation pour l'ensemble des donnees
 ########################################################################
 
-cd ../../analysis
-mkdir RepEnrich
-cd RepEnrich
+#A faire si genome de ref non indexe : 
+#cd /home/raw_data/genome_ref/
+#bowtie2-build Mus_musculus.GRCm38.dna.primary_assembly.fa mouse
+#cd /home/
+
+mkdir /home/analysis/RepEnrich
+cd /home/analysis/RepEnrich
 
 ########################################################################
 #Etape 1 : run the setup for RepEnrich2
@@ -43,7 +47,7 @@ done
 
 sample_list=(A878C18 A878C19 A878C20 A878C21)
 for i in ${sample_list[*]};do
-python ../../Tools/RepEnrich2.py mm10_repeatmasker.txt stepFour/ ${i} /rddm1/duvernois/STAGE_MATHILDE/RepEnrich2/results ${i}_multimap_R1.fastq --fastqfile2 ${i}_multimap_R2.fastq ${i}_unique.bam --cpus 16 --pairedend TRUE
+python ../../Tools/RepEnrich2.py mm10_repeatmasker.txt stepFour/ ${i} /RepEnrichd/results ${i}_multimap_R1.fastq --fastqfile2 ${i}_multimap_R2.fastq ${i}_unique.bam --cpus 16 --pairedend TRUE
 done
 
 ########################################################################

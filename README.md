@@ -81,7 +81,7 @@ gsat_quantifperte.sh : Quantifier la modification de nombre de reads present sur
 ## Architecture des dossiers  : 
 
 Obligatoire : la présence des dossiers : raw_data/labo_curie/fastq avec les différents fichiers au format fastq
-genome_ref : contenant le génome de référence mm10 et le génome rodet de RepBase
+genome_ref : contenant le génome de référence mm10 et le génome rodent de RepBase au format fasta
 Tools : contenant les outils fastq et bigwigtobedgraphe, RepEnrich2, IGV, circos
 analysis
 Il faut également que les outils suivants soient installés : bowtie2, samtools, bedtools, deeptools, R (avec les packages FactoMineR, DeSeq2), epic, (macs2)

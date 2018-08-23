@@ -32,15 +32,19 @@
 ############################################################################################
 
 #Creation des dossiers de rangements de la detection de pics
-cd ../../analysis/
-mkdir Pics
-mkdir mapping
-cd Pics/
-mkdir EPIC
+mkdir /home/analysis/Pics/
+mkdir /home/analysis/Pics/EPIC/
 
 ###################
 #Mapping, filtres 
 ###################
+
+
+#Lancer lindexation du genome de reference release 91
+cd /home/raw_data/genome_ref/
+bowtie2-build Mus_musculus.GRCm38.dna.primary_assembly.fa mouse
+cd /home/
+
 
 sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
 
@@ -79,7 +83,7 @@ bowtie2 --sensitive -x /raw_data/genome_ref/mouse -k 2 -p 4 -1 /raw_data/labo_cu
 samtools view -Sb  /analysis/mapping/$dossier/${i}.sam  > /analysis/mapping/$dossier/${i}.bam #Conversion sam en bam 
 
 #Application des filtres 
-cd ../../mapping/$dossier
+cd /home/analysis/mapping/$dossier
 samtools sort ${i}.bam > ${i}.sort.bam #Tri des fichiers
 
 mkdir Filtres #Dossier qui contiendra les fichiers de mapping filtres
@@ -99,10 +103,10 @@ echo Fin de lalignement sur le genome de reference et de lapplication des filtre
 echo Pre-traitements pour la detection des pics de ${i}
 samtools sort -n ${i}.rmdup_paired_uniques.bam> ${i}.rmdup_paired_uniques_sort.bam #Sort des fichiers
 bamToBed -i ${i}.rmdup_paired_uniques_sort.bam -bedpe > ${i}.rmdup_paired_uniques_sort.bedpe #Conversion bam en bed
-awk -F "\t" '{print "chr" $1 "\t" $2 "\t" $3 "\tchr" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' ${i}.rmdup_paired_uniques_sort.bedpe > ../../../EPIC/${i}.rmdup_paired_uniques_sortChr.bedpe
+awk -F "\t" '{print "chr" $1 "\t" $2 "\t" $3 "\tchr" $4 "\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9 "\t" $10}' ${i}.rmdup_paired_uniques_sort.bedpe > /home/analysis/Pics/EPIC/${i}.rmdup_paired_uniques_sortChr.bedpe
 echo Fin des pre-traitements pour la detection des pics de ${i}
 
-cd ../../../../ #On se replace dans le dossier home
+#cd ../../../../ #On se replace dans le dossier home
 done
 
 
@@ -116,7 +120,7 @@ done
 
 #Detection de pics avec EPIC : 
 
-cd analysis/pics/EPIC
+cd /home/analysis/pics/EPIC
 sample_list=(A878C17 A878C18 A878C19 A878C20)
 
 for i in ${sample_list[*]};do

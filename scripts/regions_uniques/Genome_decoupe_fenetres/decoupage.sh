@@ -23,6 +23,7 @@ for i in ${sample_list[*]};do
 bedtools makewindows -g Mus_musculus.GRCm38.dna.primary_assembly.genome -w ${i} > Mus_musculus.GRCm38.dna.primary_assembly.win${i}K.bed
 done
 
+
 awk -F "\t" '{print $1 "\tmm10\twin55K\t" $2 "\t" $3 "\t.\t+\t.\tID=win55Kb_" NR}' Mus_musculus.GRCm38.dna.primary_assembly.win55K.bed | awk -F "\t" '{if ($4 ==0) print $1 "\t" $2 "\t" $3 "\t1\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9; else print $0}' > Mus_musculus.GRCm38.dna.primary_assembly.win55K.gff
 awk -F "\t" '{print $1 "\tmm10\twin25K\t" $2 "\t" $3 "\t.\t+\t.\tID=win25Kb_" NR}' Mus_musculus.GRCm38.dna.primary_assembly.win25K.bed | awk -F "\t" '{if ($4 ==0) print $1 "\t" $2 "\t" $3 "\t1\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9; else print $0}' > Mus_musculus.GRCm38.dna.primary_assembly.win25K.gff
 awk -F "\t" '{print $1 "\tmm10\twin15K\t" $2 "\t" $3 "\t.\t+\t.\tID=win15Kb_" NR}' Mus_musculus.GRCm38.dna.primary_assembly.win15K.bed | awk -F "\t" '{if ($4 ==0) print $1 "\t" $2 "\t" $3 "\t1\t" $5 "\t" $6 "\t" $7 "\t" $8 "\t" $9; else print $0}' > Mus_musculus.GRCm38.dna.primary_assembly.win15K.gff
@@ -44,13 +45,15 @@ awk -F "\t" '{print $1 "\tmm10\twin5K\t" $2 "\t" $3 "\t.\t+\t.\tID=win5Kb_" NR}'
 # Du coup, comptages avec bedtools coverage (version 2.21) qui pour chaque fenetre calcule la couverture de reads 
 ################################################################################################################
 
-sample_list=(A878C17 A878C18 A878C19 A878C20 A878C21)
+sample_list=(17 18 19 20 21)
+
 for i in ${sample_list[*]};do
-bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win55K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win55K.count
-bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win25K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win25K.count
-bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win15K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win15K.count
-bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win5K.bed -abam ${i}.rmdup_paired_uniques.bam > ${i}.rmdup_paired_uniques_win5K.count
+bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win55K.bed -abam /analysis/mapping/data${i}/Filtres/A878C${i}.rmdup_paired_uniques.bam > A878C${i}.rmdup_paired_uniques_win55K.count
+bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win25K.bed -abam /analysis/mapping/data${i}/Filtres/A878C${i}.rmdup_paired_uniques.bam > A878C${i}.rmdup_paired_uniques_win25K.count
+bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win15K.bed -abam /analysis/mapping/data${i}/Filtres/A878C${i}.rmdup_paired_uniques.bam > A878C${i}.rmdup_paired_uniques_win15K.count
+bedtools coverage -b Mus_musculus.GRCm38.dna.primary_assembly.win5K.bed -abam /analysis/mapping/data${i}/Filtres/A878C${i}.rmdup_paired_uniques.bam > A878C${i}.rmdup_paired_uniques_win5K.count
 done
+
 
 ############################################################
 #Creation dun fichier de comptage pour toutes les librairies
@@ -61,13 +64,17 @@ for i in ${sample_list[*]};do
 python compile_counts.py -o win${i}K_IP.count A878C17.rmdup_paired_uniques_win${i}K.count A878C18.rmdup_paired_uniques_win${i}K.count A878C19.rmdup_paired_uniques_win${i}K.count A878C20.rmdup_paired_uniques_win${i}K.count
 done
 
+mkdir /home/analysis/Fenetres/
+mv *count /home/analysis/Fenetres/
+
+
 ############################################
 #Analyse des resultats avec R : RPKM et ACP
 ############################################
 R
 library(FactoMineR)
 
-data = read.table("55/win55K_IP.count", header=T, row.names=1)
+data = read.table("/home/analysis/Fenetres/win55K_IP.count", header=T, row.names=1)
 
 data <- data.frame(
   row.names=row.names(data),
