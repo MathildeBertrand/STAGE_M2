@@ -74,12 +74,12 @@ Contient les scripts pour générer les fichiers de visualisation sous IGV (IGV.
 
 ## Architecture des dossiers  : 
 
-Obligatoire : la présence des dossiers : raw_data/labo_curie/fastq avec les différents fichiers au format fastq
-genome_ref : contenant le génome de référence mm10 et le génome rodent de RepBase au format fasta
-Tools : contenant les outils fastq et bigwigtobedgraphe, RepEnrich2, IGV, circos
-analysis
+Obligatoire : la présence des dossiers : raw_data/labo_curie/fastq avec les différents fichiers au format fastq : 
+genome_ref : contenant le génome de référence mm10 et le génome rodent de RepBase au format fasta ; 
+analysis (qui contiendra tous les fichiers de sortie générés par les analyses ; 
+Tools : contenant les outils fastq et bigwigtobedgraphe, RepEnrich2, IGV, circos.
 Il faut également que les outils suivants soient installés : bowtie2, samtools, bedtools, deeptools, R (avec les packages FactoMineR, DeSeq2), epic, (macs2)
 
-Les dossiers Trimme (les fichiers fastq trimés des 5 premières paires de bases), FASTQC (contenant les éléments d'analyse qualité), mapping (contenant les différents fichiers d'alignments et les fichiers bam filtrés), et PICS (contenant les résultats de la détection de pics), Repenrich, repBaseMapping et Fenetres (analyse du genome decoupes en fenetres) sont crées au moment de l'analyse.
+Les dossiers Trimme (les fichiers fastq trimés des 5 premières paires de bases), FASTQC (contenant les éléments d'analyse qualité), mapping (contenant les différents fichiers d'alignments et les fichiers bam filtrés), PICS (contenant les résultats de la détection de pics), Repenrich, repBaseMapping et Fenetres (analyse du genome découpé en fenetres) sont crées au moment de l'analyse.
 
 ![alt text](https://github.com/MathildeBertrand/STAGE_M2/blob/master/Organisation_dossiers.png)
