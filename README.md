@@ -22,6 +22,9 @@ Remarques :
 
 Ce dossier contient les scripts nécessaires a l'analyse des regions uniques une fois la detection des pics réalisée (cf bash main.sh 1) : 
 
+```
+Filtre_effects.sh : lors de l'application des filtres pour l'étude des régions uniques, compte le nombre de reads qui restent après application des filtres
+```
 ### MiseCommuns
 
 Scripts pour la mise en communs des pics entre deux fichiers : distingue les pics chevauchants et les pics uniques
@@ -68,15 +71,6 @@ Contient les scripts d'analyses statistique R de Repenrich2 (repEnrich.R) et de 
 
 Contient les scripts pour générer les fichiers de visualisation sous IGV (IGV.sh) ou avec Circos
 
-## Le dossier Comptages
-
-Les différents scripts qui ont permis de réaliser des comptages
-
-```
-Filtre_effects.sh : lors de l'application des filtres pour l'étude des régions uniques, compte le nombre de reads qui restent après application des filtres
-gsat_quantifperte.sh : Quantifier la modification de nombre de reads present sur le GSAT du chrs9
-
-```
 
 ## Architecture des dossiers  : 
 
